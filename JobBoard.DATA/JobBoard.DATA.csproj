@@ -74,6 +74,12 @@
     <Compile Include="Locations.cs">
       <DependentUpon>JobBoard.tt</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\ApplicationsMetadata.cs" />
+    <Compile Include="Metadata\ApplicationStatusMetadata.cs" />
+    <Compile Include="Metadata\LocationsMetadata.cs" />
+    <Compile Include="Metadata\OpenPositionsMetadata.cs" />
+    <Compile Include="Metadata\PositionsMetadata.cs" />
+    <Compile Include="Metadata\UserDetailsMetadata.cs" />
     <Compile Include="OpenPositions.cs">
       <DependentUpon>JobBoard.tt</DependentUpon>
     </Compile>
@@ -113,8 +119,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Metadata\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
