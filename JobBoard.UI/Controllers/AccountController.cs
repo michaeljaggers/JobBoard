@@ -1,4 +1,5 @@
-﻿using JobBoard.UI.Models;
+﻿using JobBoard.DATA;
+using JobBoard.UI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -153,6 +154,18 @@ namespace JobBoard.UI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    #region Custom User Details
+                    UserDetails newUserDeets = new UserDetails();
+                    newUserDeets.UserId = user.Id;
+                    newUserDeets.FirstName = model.FirstName;
+                    newUserDeets.LastName = model.LastName;
+                    //newUserDeets.ResumeFilename = model.ResumeFile; // TODO: handle file upload
+
+                    JobBoardEntities db = new JobBoardEntities();
+                    db.UserDetails1.Add(newUserDeets);
+                    db.SaveChanges();
+                    #endregion
+
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
