@@ -1,7 +1,5 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 
-[assembly: OwinStartupAttribute(typeof(JobBoard.UI.Startup))]
 namespace JobBoard.UI
 {
     public partial class Startup
