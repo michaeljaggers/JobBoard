@@ -4,26 +4,52 @@ namespace JobBoard.UI
 {
     public class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            // JS Bundles
+            bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
+                        "~/Scripts/jquery-min.js",
+                        "~/Scripts/bootstrap.min.js",
+                        "~/Scripts/material.min.js",
+                        "~/Scripts/material-kit.js",
+                        "~/Scripts/jquery.parallax.js",
+                        "~/Scripts/owl.carousel.min.js",
+                        "~/Scripts/jquery.slicknav.js",
+                        "~/Scripts/main.js",
+                        "~/Scripts/jquery.counterup.min.js",
+                        "~/Scripts/waypoints.min.js",
+                        "~/Scripts/bootstrap-select.min.js",
+                        "~/Scripts/form-validator.min.js",
+                        "~/Scripts/contact-form-script.js",
+                        "~/Scripts/jquery.themepunch.revolution.min.js",
+                        "~/Scripts/jquery.themepunch.tools.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+            // Style Bundles
+            bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
+                      "~/Content/css/bootstrap.min.css",
+                      "~/Content/css/jasny-bootstrap.min.css",
+                      "~/Content/css/bootstrap-select.min.css"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            bundles.Add(new StyleBundle("~/Content/material").Include(
+                      "~/Content/css/material-kit.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+            bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
+                      "~/fonts/font-awesome.min.css",
+                      "~/fonts/themify-icons.css"));
+
+            bundles.Add(new StyleBundle("~/Content/extras").Include(
+                      "~/Content/extras/animate.css",
+                      "~/Content/extras/owl.carousel.css",
+                      "~/Content/extras/owl.theme.css",
+                      "~/Content/extras/settings.css",
+                      "~/Content/css/slicknav.css"));
+
+            bundles.Add(new StyleBundle("~/Content/theme").Include(
+                      "~/Content/css/main.css",
+                      "~/Content/css/responsive.css",
+                      "~/Content/css/colors/sky.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }

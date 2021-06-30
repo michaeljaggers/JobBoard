@@ -1,232 +1,546 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET Identity</h1>
-    <p class="lead">ASP.NET Identity is the membership system for ASP.NET apps. Following are the features of ASP.NET Identity in this sample application.</p>
-    <p><a href="http://www.asp.net/identity" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <dl>
-            <dt>Initialize ASP.NET Identity</dt>
-            <dd>
-                You can initialize ASP.NET Identity when the application starts. Since ASP.NET Identity is Entity Framework based in this sample,
-                you can create DatabaseInitializer which is configured to get called each time the app starts.
-                <strong>Please look in App_Start\IdentityConfig.cs</strong>
-                This code shows the following
-                <ul>
-                    <li>When should the Initializer run and when should the database be created</li>
-                    <li>Create Admin user</li>
-                    <li>Create Admin role</li>
-                    <li>Add Admin user to Admin role</li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Add profile data for the user</dt>
-            <dd>
-                <a href="http://blogs.msdn.com/b/webdev/archive/2013/10/16/customizing-profile-information-in-asp-net-identity-in-vs-2013-templates.aspx">Please follow this tutorial.</a>
-
-                <ul>
-                    <li>Add profile information in the Users Table</li>
-                    <li>Look in Models\IdentityModels.cs for examples</li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Validation</dt>
-            <dd>
-                When you create a User using a username or password, the Identity system performs validation on the username and password, and the passwords are hashed before they are
-                stored in the database. You can customize the validation by changing some of the properties of the validators such as Turn alphanumeric on/off, set minimum password length
-                or you can write your own custom validators and register them with the UserManager.
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Register a user and login</dt>
-            <dd>
-                Click @Html.ActionLink("Register", "Register", "Account") and see the code in AccountController.cs and Register Action.
-                Click @Html.ActionLink("Log in", "Login", "Account") and see the code in AccountController.cs and Login Action.
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Social Logins</dt>
-            <dd>
-                You can the support so that users can login using their Facebook, Google, Twitter, Microsoft Account and more.
-            </dd>
-            <dd>
-                <ul>
-                    <li>
-                        <a href="http://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/">Add Social Logins</a>
-                    </li>
-                    <li>
-                        <a href="http://blogs.msdn.com/b/webdev/archive/2013/10/16/get-more-information-from-social-providers-used-in-the-vs-2013-project-templates.aspx">Get more data about the user when they login suing Facebook</a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Basic User Management</dt>
-            <dd>
-                Do Create, Update, List and Delete Users.
-                Assign a Role to a User.
-                Only Users In Role Admin can access this page. This uses the [Authorize(Roles = "Admin")] on the UserAdmin controller.
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Basic Role Management</dt>
-            <dd>
-                Do Create, Update, List and Delete Roles.
-                Only Users In Role Admin can access this page. This authorization is doen by using the [Authorize(Roles = "Admin")] on the RolesAdmin controller.
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Account Confirmation</dt>
-            <dd>
-                When you register a new account, you will be sent an email confirmation.
-                You can use an email service such as <a href="http://www.windowsazure.com/en-us/documentation/articles/sendgrid-dotnet-how-to-send-email/">SendGrid</a> which integrate nicely with Windows Azure and requires no configuration or
-                set up an SMTP server to send email.
-                You can send email using the EmailService which is registered in App_Start\IdentityConfig.cs
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Two-Factor Authentication</dt>
-            <dd>
-                This sample shows how you can use Two-Factor authentication. This sample has a SMS and email service registered where you can send SMS or email for sending the security code.
-                You can add more two-factor authentication factors such as QR codes and plug them into ASP.NET Identity.
-                <ul>
-                    <li>
-                        You can use a SMS using <a href="https://www.twilio.com/">Twilio</a> or use any means of sending SMS. Please <a href="https://www.twilio.com/docs/quickstart/csharp/sms/sending-via-rest">read</a> for more details on using Twilio.
-                        You can send SMS using the SmsService which is registered in App_Start\IdentityConfig.cs
-                    </li>
-                    <li>
-                        You can use an email service such as <a href="http://www.windowsazure.com/en-us/documentation/articles/sendgrid-dotnet-how-to-send-email/">SendGrid</a> or
-                        set up an SMTP server to send email.
-                        You can send email using the EmailService which is registered in App_Start\IdentityConfig.cs
-                    </li>
-
-                    <li>
-                        When you login, you can add a phone number by clicking the Manage page.
-                    </li>
-                    <li>
-                        Once you add a phone number and have the Phone service hooked to send a SMS, you will get a code through SMS to confirm your phone number.
-                    </li>
-                    <li>
-                        In the Manage page, you can turn on Two-Factor authentication.
-                    </li>
-                    <li>
-                        When you logout and login, after you enter the username and password, you will get an option of how to get the security code to use for two-factor authentication.
-                    </li>
-                    <li>
-                        You can copy the code from your SMS or email and enter in the form to login.
-                    </li>
-                    <li>
-                        The sample also shows how to protect against Brute force attacks against two-factor codes. When you enter a code incorrectly for 5 times then you will be
-                        lockedout for 5 min before you can enter a new code. These settings can be configured in App_Start\IdentityConfig.cs by setting  DefaultAccountLockoutTimeSpan and MaxFailedAccessAttemptsBeforeLockout on the UserManager.
-                    </li>
-                    <li>
-                        If the machine you are browsing this website is your own machine, you can choose to check the "Remember Me" option after you enter the code.
-                        This option will remember you forever on this machine and will not ask you for the two-factor authentication, the next time when you login to the website.
-                        You can change your "Remember Me" settings for two-factor authentication in the Manage page.
-                    </li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Account Lockout</dt>
-            <dd>
-                Provide a way to Lockout out the user if the user enters their password or two-factor codes incorrectly.
-                The number of invalid attempts and the timespan for the users are locked out can be configured.
-                A developer can optionally turn off Account Lockout for certain user accounts should they need to.
-            </dd>
+<!-- Main Slider Section -->
+<section id="slider">
+    <div class="tp-banner-container">
+        <div class="tp-banner">
             <ul>
-                <li>Account LockOut settings can be configured in the UserManager in IdentityConfig.cs</li>
+                <li data-transition="fade" data-slotamount="7" data-masterspeed="2000" data-thumb="~/Content/img/slider/slide1.jpg">
+                    <!-- MAIN IMAGE -->
+                    <img src="~/Content/img/dummy.png" alt="laptopmockup_sliderdy" data-lazyload="../../Content/img/slider/slide1.jpg">
+                    <!-- LAYERS 1 -->
+                    <div class="tp-caption mediumHeading h2 lft tp-resizeme rs-parallaxlevel-0 start"
+                         data-x="center"
+                         data-y="center"
+                         data-voffset="-50"
+                         data-speed="1200"
+                         data-start="1000"
+                         data-easing="Back.easeInOut"
+                         data-splitin="none"
+                         data-splitout="none"
+                         data-elementdelay="0.1"
+                         data-endelementdelay="0.1"
+                         data-endspeed="400" style="z-index: 11;">
+                        <h2 style="min-height: 0px; min-width: 0px; line-height: 30px; border-width: 0px; margin: 0px 0px 20px; padding: 0px; letter-spacing: 2px; font-weight: 900; font-size: 52px; color: #fff; text-transform: uppercase;">Looking For A Job?</h2>
+                    </div>
+                    <!-- LAYER 2 -->
+                    <div class="tp-caption detailText p lfl tp-resizeme start" data-x="center" data-y="center" data-voffset="10" data-speed="1200" data-start="1500" data-easing="easeInOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="text-align: center; z-index: 8; color: #fff;">
+                        <p style="font-size: 15px;">
+                            Browse our assortment of open internal positions.
+                            <br style="font-size: 12px;">Forge your own path.
+                        </p>
+                    </div>
+                    <!-- LAYER 3-->
+                    <div class="tp-caption lfb tp-resizeme rs-parallaxlevel-0 start"
+                         data-x="center"
+                         data-y="center"
+                         data-voffset="90"
+                         data-speed="1200"
+                         data-start="2000"
+                         data-easing="easeInOutExpo"
+                         data-splitin="none"
+                         data-splitout="none"
+                         data-elementdelay="0.1"
+                         data-endelementdelay="0.1"
+                         data-endspeed="300" style="z-index: 11;">
+                        <a href="#" class="btn btn-common btn-lg">Search Now</a>
+                    </div>
+                </li>
+
+                <li data-transition="slideup" data-slotamount="7" data-masterspeed="800" data-thumb="~/Content/img/slider/slide2.jpg">
+                    <!-- MAIN IMAGE -->
+                    <img src="~/Content/img/dummy.png" alt="laptopmockup_sliderdy" data-lazyload="../../Content/img/slider/slide2.jpg">
+                    <!-- LAYERS 1-->
+                    <div class="caption title sfb tp-caption start" data-x="center" data-y="center" data-voffset="-50" data-speed="400" data-start="800" data-easing="easeOutExpo">
+                        <h2 style="min-height: 0px; min-width: 0px; line-height: 94px; border-width: 0px; margin: 0px 0px 20px; padding: 0px; letter-spacing: 2px; font-size: 52px; font-weight: 900; color: #fff; text-transform: uppercase;">Your future is waiting...</h2>
+                    </div>
+                    <!-- LAYERS 2-->
+                    <div class="caption text p sfb tp-caption start" data-x="center" data-y="center" data-voffset="10" data-speed="400" data-start="1200" data-easing="easeOutExpo" style="z-index: 8; color: #fff; text-align: center;">
+                        <p style="font-size: 15px;">
+                            Create an account, add a resume...
+                            <br style="font-size: 12px;">Take control of your future.
+                        </p>
+                    </div>
+                    <!-- LAYERS 3-->
+                    <div class="caption sfb tp-caption start" data-x="center" data-y="center" data-voffset="90" data-speed="400" data-start="1600" data-easing="easeOutExpo">
+                        <a href="#" class="btn btn-border btn-lg">Get Started</a>
+                    </div>
+                </li>
+                <li data-transition="zoomin" data-slotamount="7" data-masterspeed="1500" data-thumb="~/Content/img/slider/slide3.jpg">
+                    <!-- MAIN IMAGE -->
+                    <img src="~/Content/img/dummy.png" alt="laptopmockup_sliderdy" data-lazyload="../../Content/img/slider/slide3.jpg">
+                    <!-- LAYERS 1-->
+                    <div class="tp-caption mediumHeading h2 lfl tp-resizeme rs-parallaxlevel-0 start"
+                         data-x="35"
+                         data-y="center"
+                         data-voffset="-50"
+                         data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+                         data-customout="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+                         data-speed="1200"
+                         data-start="1550"
+                         data-easing="Back.easeInOut"
+                         data-splitin="none"
+                         data-splitout="none"
+                         data-elementdelay="0.1"
+                         data-endelementdelay="0.1"
+                         data-endspeed="400"
+                         data-endeasing="Back.easeIn" style="z-index: 11;">
+                        <h2 style="min-height: 0px; min-width: 0px; line-height: 94px; border-width: 0px; margin: 0px 0px 20px; padding: 0px; letter-spacing: 2px; font-size: 52px; font-weight: 900; color: #fff; text-transform: uppercase;">Internship Opprtunity?</h2>
+                    </div>
+                    <!-- LAYER 2 -->
+                    <div class="tp-caption detailText p lfl tp-resizeme start" data-x="35" data-y="center" data-voffset="10" data-speed="1200" data-start="2100" data-easing="easeInOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 8; color: #fff;">
+                        <p style="font-size: 15px;">
+                            No. Go get your training on someone's dime...
+                            <br style="font-size: 12px;">We only hire real developers here.
+                        </p>
+                    </div>
+                    <!-- LAYERS 3-->
+                    <div class="tp-caption lfb tp-resizeme rs-parallaxlevel-0 start"
+                         data-x="35"
+                         data-y="center"
+                         data-voffset="90"
+                         data-speed="1200"
+                         data-start="2700"
+                         data-easing="easeInOutExpo"
+                         data-splitin="none"
+                         data-splitout="none"
+                         data-elementdelay="0.1"
+                         data-endelementdelay="0.1"
+                         data-endspeed="300" style="z-index: 11;">
+                        <a href="#" class="btn btn-common btn-lg">Find Your Handout</a>
+                    </div>
+                    <!-- LAYER NR. 2 -->
+                    <div class="tp-caption lfb start" data-y="50" data-x="750" style="z-index: 9; left: 839.5px; top: 125px; visibility: visible; opacity: 0; transform: translate3d(0px, 763px, 0px);" data-captionhidden="on" data-endeasing="Power4.easeIn" data-endspeed="1000" data-start="1200" data-speed="800" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;">
+                        <img src="~/Content/img/dummy.png" alt="" data-lazyload="../../Content/img/slider/3dlayer_3.png">
+                    </div>
+                </li>
             </ul>
-        </dl>
+        </div>
     </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Security Token provider</dt>
-            <dd>
-                Support a way to regenerate the Security Token for the user in cases when the User changes there password or any other security related information such as removing an associated login(such as Facebook, Google, Microsoft Account etc).
-                This is needed to ensure that any tokens generated with the old password are invalidated. In the sample project, if you change the users password then a new token is generated for the user and any previous tokens are invalidated.
-                This feature provides an extra layer of security to your application since when you change your password, you will be logged out from everywhere (all other browsers) where you have logged into this application.
-            </dd>
-            <dd>
-                <ul>
-                    <li>The provider is registered when you add CookieAuthentication in StartupAuth to your application.</li>
-                </ul>
-            </dd>
-        </dl>
+</section>
+<!-- Main Slider Section End-->
+<!-- Find Job Section Start -->
+<section class="find-job section">
+    <div class="container">
+        <h2 class="section-title">Internal Positions</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="job-list">
+                    <div class="thumb">
+                        <a href="job-details.html"><img src="~/Content/img/jobs/img-1.jpg" alt=""></a>
+                    </div>
+                    <div class="job-list-content">
+                        <h4><a href="job-details.html">Need a web designer</a><span class="full-time">Full-Time</span></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quaerat aut veniam molestiae atque dolorum omnis temporibus consequuntur saepe. Nemo atque consectetur saepe corporis odit in dicta reprehenderit, officiis, praesentium?</p>
+                        <div class="job-tag">
+                            <div class="pull-left">
+                                <div class="meta-tag">
+                                    <span><a href="browse-categories.html"><i class="ti-brush"></i>Art/Design</a></span>
+                                    <span><i class="ti-location-pin"></i>Washington, USA</span>
+                                    <span><i class="ti-time"></i>60/Hour</span>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="job-details.html" class="btn btn-common btn-rm">Apply Job</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="job-list">
+                    <div class="thumb">
+                        <a href="job-details.html"><img src="~/Content/img/jobs/img-2.jpg" alt=""></a>
+                    </div>
+                    <div class="job-list-content">
+                        <h4><a href="job-details.html">Front-end developer needed</a><span class="full-time">Full-Time</span></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quaerat aut veniam molestiae atque dolorum omnis temporibus consequuntur saepe. Nemo atque consectetur saepe corporis odit in dicta reprehenderit, officiis, praesentium?</p>
+                        <div class="job-tag">
+                            <div class="pull-left">
+                                <div class="meta-tag">
+                                    <span><a href="browse-categories.html"><i class="ti-desktop"></i>Technologies</a></span>
+                                    <span><i class="ti-location-pin"></i>Cupertino, CA, USA</span>
+                                    <span><i class="ti-time"></i>60/Hour</span>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="job-details.html" class="btn btn-common btn-rm">Apply Job</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="job-list">
+                    <div class="thumb">
+                        <a href="job-details.html"><img src="~/Content/img/jobs/img-3.jpg" alt=""></a>
+                    </div>
+                    <div class="job-list-content">
+                        <h4><a href="job-details.html">Senior Accountant</a><span class="part-time">Part-Time</span></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quaerat aut veniam molestiae atque dolorum omnis temporibus consequuntur saepe. Nemo atque consectetur saepe corporis odit in dicta reprehenderit, officiis, praesentium?</p>
+                        <div class="job-tag">
+                            <div class="pull-left">
+                                <div class="meta-tag">
+                                    <span><a href="browse-categories.html"><i class="ti-home"></i>Finance</a></span>
+                                    <span><i class="ti-location-pin"></i>Delaware, USA</span>
+                                    <span><i class="ti-time"></i>60/Hour</span>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="job-details.html" class="btn btn-common btn-rm">Apply Job</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="job-list">
+                    <div class="thumb">
+                        <a href="job-details.html"><img src="~/Content/img/jobs/img-4.jpg" alt=""></a>
+                    </div>
+                    <div class="job-list-content">
+                        <h4><a href="job-details.html">Fullstack web developer needed</a><span class="full-time">Full-Time</span></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quaerat aut veniam molestiae atque dolorum omnis temporibus consequuntur saepe. Nemo atque consectetur saepe corporis odit in dicta reprehenderit, officiis, praesentium?</p>
+                        <div class="job-tag">
+                            <div class="pull-left">
+                                <div class="meta-tag">
+                                    <span><a href="browse-categories.html"><i class="ti-desktop"></i>Technologies</a></span>
+                                    <span><i class="ti-location-pin"></i>New York, USA</span>
+                                    <span><i class="ti-time"></i>60/Hour</span>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="job-details.html" class="btn btn-common btn-rm">Apply Job</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Password Reset</dt>
-            <dd>
-                Allows the user to reset their passwords if they have forgotten their password. In this sample users need to confirm their email before they can reset their passwords.
-            </dd>
-        </dl>
+</section>
+<!-- Find Job Section End -->
+<!-- Start Purchase Section -->
+<section class="section purchase" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row">
+            <div class="section-content text-center">
+                <h1 class="title-text">
+                    Looking for an upgrade?
+                </h1>
+                <p>Take the next step and secure your future!</p>
+                <a href="my-account.html" class="btn btn-common">Get Started Now</a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Custom Storage providers</dt>
-            <dd>
-                You can extend ASP.NET Identity to write your own custom storage provider for storing the ASP.NET Identity system and user data
-                in a persistance system of your choice such as MondoDb, RavenDb, Azure Table Storage etc.
-            </dd>
-            <dd>
-                <ul>
-                    <li>
-                        <a href="http://www.asp.net/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity">
-                            learn more on how to implement your own storage provider
-                        </a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
+</section>
+<!-- End Purchase Section -->
+<!-- Category Section Start -->
+<section class="category section">
+    <div class="container">
+        <h2 class="section-title">Browse Categories</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                    <a href="browse-jobs.html">
+                        <div class="icon">
+                            <i class="ti-home"></i>
+                        </div>
+                        <h3>Finance</h3>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                    <a href="browse-jobs.html">
+                        <div class="icon">
+                            <i class="ti-world"></i>
+                        </div>
+                        <h3>Sale/Markting</h3>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                    <a href="browse-jobs.html">
+                        <div class="icon">
+                            <i class="ti-book"></i>
+                        </div>
+                        <h3>Education/Training</h3>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                    <a href="browse-jobs.html">
+                        <div class="icon">
+                            <i class="ti-desktop"></i>
+                        </div>
+                        <h3>Technologies</h3>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                    <a href="browse-jobs.html">
+                        <div class="icon">
+                            <i class="ti-brush"></i>
+                        </div>
+                        <h3>Art/Design</h3>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                    <a href="browse-jobs.html">
+                        <div class="icon">
+                            <i class="ti-heart"></i>
+                        </div>
+                        <h3>Healthcare</h3>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                    <a href="browse-jobs.html">
+                        <div class="icon">
+                            <i class="ti-filter"></i>
+                        </div>
+                        <h3>Science</h3>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                    <a href="browse-jobs.html">
+                        <div class="icon">
+                            <i class="ti-cup"></i>
+                        </div>
+                        <h3>Food Services</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Documentation</dt>
-            <dd>
-                <ul>
-                    <li>
-                        Tutorials: <a href="www.asp.net/identity">www.asp.net/identity</a>
-                    </li>
-                    <li>
-                        StackOverflow: <a href="http://stackoverflow.com/questions/tagged/asp.net-identity">http://stackoverflow.com/questions/tagged/asp.net-identity</a>
-                    </li>
-                    <li>
-                        Twitter: #identity #aspnet
-                    </li>
-                    <li>
-                        <a href="http://curah.microsoft.com/55636/aspnet-identity">ASP.NET Identity on curah</a>
-                    </li>
-                    <li>
-                        Have bugs or suggestions for ASP.NET Identity <a href="http://aspnetidentity.codeplex.com/">http://aspnetidentity.codeplex.com/</a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
+</section>
+<!-- Category Section End -->
+<!-- Testimonial Section Start -->
+<section id="testimonial" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="touch-slider owl-carousel owl-theme">
+                <div class="item active text-center">
+                    <img class="img-member" src="~/Content/img/testimonial/img1.jpg" alt="">
+                    <div class="client-info">
+                        <h2 class="client-name">Jessica <span>(Senior Accountant)</span></h2>
+                    </div>
+                    <p><i class="fa fa-quote-left quote-left"></i> The team that was assigned to our project... were extremely professional <i class="fa fa-quote-right quote-right"></i><br> throughout the project and assured that the owner expectations were met and <br> often exceeded. </p>
+                </div>
+                <div class="item text-center">
+                    <img class="img-member" src="~/Content/img/testimonial/img2.jpg" alt="">
+                    <div class="client-info">
+                        <h2 class="client-name">John Doe <span>(Project Menager)</span></h2>
+                    </div>
+                    <p><i class="fa fa-quote-left quote-left"></i> The team that was assigned to our project... were extremely professional <i class="fa fa-quote-right quote-right"></i><br> throughout the project and assured that the owner expectations were met and <br> often exceeded. </p>
+                </div>
+                <div class="item text-center">
+                    <img class="img-member" src="~/Content/img/testimonial/img3.jpg" alt="">
+                    <div class="client-info">
+                        <h2 class="client-name">Helen <span>(Engineer)</span></h2>
+                    </div>
+                    <p><i class="fa fa-quote-left quote-left"></i> The team that was assigned to our project... were extremely professional <i class="fa fa-quote-right quote-right"></i><br> throughout the project and assured that the owner expectations were met and <br> often exceeded. </p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+<!-- Testimonial Section End -->
+<!-- Featured Jobs Section Start -->
+<section class="featured-jobs section">
+    <div class="container">
+        <h2 class="section-title">
+            Featured Jobs
+        </h2>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="featured-item">
+                    <div class="featured-wrap">
+                        <div class="featured-inner">
+                            <figure class="item-thumb">
+                                <a class="hover-effect" href="job-page.html">
+                                    <img src="~/Content/img/features/img-1.jpg" alt="">
+                                </a>
+                            </figure>
+                            <div class="item-body">
+                                <h3 class="job-title"><a href="job-page.html">Graphic Designer</a></h3>
+                                <div class="adderess"><i class="ti-location-pin"></i> Dallas, United States</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-foot">
+                        <span><i class="ti-calendar"></i> 4 months ago</span>
+                        <span><i class="ti-time"></i> Full Time</span>
+                        <div class="view-iocn">
+                            <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="featured-item">
+                    <div class="featured-wrap">
+                        <div class="featured-inner">
+                            <figure class="item-thumb">
+                                <a class="hover-effect" href="job-page.html">
+                                    <img src="~/Content/img/features/img-2.jpg" alt="">
+                                </a>
+                            </figure>
+                            <div class="item-body">
+                                <h3 class="job-title"><a href="job-page.html">Software Engineer</a></h3>
+                                <div class="adderess"><i class="ti-location-pin"></i> Delaware, United States</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-foot">
+                        <span><i class="ti-calendar"></i> 5 months ago</span>
+                        <span><i class="ti-time"></i> Part Time</span>
+                        <div class="view-iocn">
+                            <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="featured-item">
+                    <div class="featured-wrap">
+                        <div class="featured-inner">
+                            <figure class="item-thumb">
+                                <a class="hover-effect" href="job-page.html">
+                                    <img src="~/Content/img/features/img-3.jpg" alt="">
+                                </a>
+                            </figure>
+                            <div class="item-body">
+                                <h3 class="job-title"><a href="job-page.html">Managing Director</a></h3>
+                                <div class="adderess"><i class="ti-location-pin"></i> NY, United States</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-foot">
+                        <span><i class="ti-calendar"></i> 3 months ago</span>
+                        <span><i class="ti-time"></i> Full Time</span>
+                        <div class="view-iocn">
+                            <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="featured-item">
+                    <div class="featured-wrap">
+                        <div class="featured-inner">
+                            <figure class="item-thumb">
+                                <a class="hover-effect" href="job-page.html">
+                                    <img src="~/Content/img/features/img-3.jpg" alt="">
+                                </a>
+                            </figure>
+                            <div class="item-body">
+                                <h3 class="job-title"><a href="job-page.html">Graphic Designer</a></h3>
+                                <div class="adderess"><i class="ti-location-pin"></i> Washington, United States</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-foot">
+                        <span><i class="ti-calendar"></i> 1 months ago</span>
+                        <span><i class="ti-time"></i> Part Time</span>
+                        <div class="view-iocn">
+                            <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="featured-item">
+                    <div class="featured-wrap">
+                        <div class="featured-inner">
+                            <figure class="item-thumb">
+                                <a class="hover-effect" href="job-page.html">
+                                    <img src="~/Content/img/features/img-2.jpg" alt="">
+                                </a>
+                            </figure>
+                            <div class="item-body">
+                                <h3 class="job-title"><a href="job-page.html">Software Engineer</a></h3>
+                                <div class="adderess"><i class="ti-location-pin"></i> Dallas, United States</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-foot">
+                        <span><i class="ti-calendar"></i> 6 months ago</span>
+                        <span><i class="ti-time"></i> Full Time</span>
+                        <div class="view-iocn">
+                            <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="featured-item">
+                    <div class="featured-wrap">
+                        <div class="featured-inner">
+                            <figure class="item-thumb">
+                                <a class="hover-effect" href="job-page.html">
+                                    <img src="~/Content/img/features/img-1.jpg" alt="">
+                                </a>
+                            </figure>
+                            <div class="item-body">
+                                <h3 class="job-title"><a href="job-page.html">Managing Director</a></h3>
+                                <div class="adderess"><i class="ti-location-pin"></i> NY, United States</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-foot">
+                        <span><i class="ti-calendar"></i> 7 months ago</span>
+                        <span><i class="ti-time"></i> Part Time</span>
+                        <div class="view-iocn">
+                            <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Featured Jobs Section End -->
+<!-- Counter Section Start -->
+<section id="counter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-briefcase"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Jobs</h2>
+                        <h1 class="counter">12050</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-user"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Members</h2>
+                        <h1 class="counter">10890</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-write"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Resume</h2>
+                        <h1 class="counter">700</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-heart"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Company</h2>
+                        <h1 class="counter">9050</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Counter Section End -->
