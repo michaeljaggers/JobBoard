@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<JobBoard.DATA.ApplicationStatus>
 
 @{
-    ViewBag.Title = "Application Status Index";
+    ViewBag.Title = "Manage Application Statuses";
 }
 
 <section class="find-job section">
@@ -18,7 +18,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.StatusDescription)
                 </th>
-                <th></th>
+                <th>
+                    Actions
+                </th>
             </tr>
 
             @foreach (var item in Model)
