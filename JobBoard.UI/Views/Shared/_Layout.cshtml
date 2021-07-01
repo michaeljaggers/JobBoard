@@ -132,37 +132,43 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        Employers <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown">
-                                        <li>
-                                            <a href="post-job.html">
-                                                Add Job
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="manage-jobs.html">
-                                                Manage Jobs
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="manage-applications.html">
-                                                Manage Applications
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="browse-resumes.html">
-                                                Browse Resumes
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right float-right">
-                                <li class="right"><a href="my-account.html"><i class="ti-lock"></i>  Log In</a></li>
-                            </ul>
+                                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    <li>
+                                        <a href="#">
+                                            Admin <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown">
+                                            <li>
+                                                <a href=@Url.Action("Index", "Applications")>
+                                                    Manage Applications
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Index", "ApplicationStatus")>
+                                                    Manage Application Statuses
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Index", "Locations")>
+                                                    Manage Locations
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Index", "OpenPositions")>
+                                                    Manage Open Positions
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Index", "Positions")>
+                                                    Manage Positions
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                                </ul>
+                                @Html.Partial("_LoginPartial")
                         </div>
                     </div>
                     <!-- Mobile Menu Start -->
