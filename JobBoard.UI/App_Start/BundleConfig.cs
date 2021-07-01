@@ -28,6 +28,9 @@ namespace JobBoard.UI
                         "~/Scripts/jquery.unobtrusive-ajax.min.js",
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate*"));
+
             // Style Bundles
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                       "~/Content/css/bootstrap.min.css",

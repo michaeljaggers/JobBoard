@@ -1,34 +1,37 @@
 ﻿@model JobBoard.DATA.Positions
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Position Details";
 }
 
-<h2>Details</h2>
+<section class="find-job section">
+    <div class="container">
+        <h2 class="section-title">@ViewBag.Title</h2>
+        <div>
 
-<div>
-    <h4>Positions</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.JobDescription)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.JobDescription)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.JobDescription)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.JobDescription)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PositionId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.PositionId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</section>
