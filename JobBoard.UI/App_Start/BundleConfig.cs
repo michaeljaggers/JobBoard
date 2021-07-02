@@ -57,7 +57,7 @@ namespace JobBoard.UI
                       "~/Content/css/colors/sky.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/site.css"));
+                      "~/Content/css/site.css"));
         }
     }
 }

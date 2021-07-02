@@ -1,2 +1,7 @@
 ﻿body {
 }
+
+.form-group input[type=file] {
+    opacity: 1;
+    position: relative;
+}
