@@ -109,6 +109,8 @@ namespace JobBoard.UI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, "Employee");
+
                     #region Resume Upload
                     string file = null;
 

@@ -12,6 +12,8 @@ namespace JobBoard.UI.Controllers
 {
     public class LocationsController : Controller
     {
+        private AspNetUserRoles 
+
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: Locations
@@ -39,6 +41,10 @@ namespace JobBoard.UI.Controllers
         // GET: Locations/Create
         public ActionResult Create()
         {
+            //string managerId = "0a7a1fe5-aa86-4cd0-bc71-a9cbc3f68cc5";
+
+            //var managers = ddb.Ro
+
             ViewBag.ManagerId = new SelectList(db.UserDetails1, "UserId", "FirstName");
             return View();
         }

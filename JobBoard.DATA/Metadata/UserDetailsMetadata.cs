@@ -23,8 +23,17 @@ namespace JobBoard.DATA
 
         [Display(Name = "Resume")]
         public string ResumeFilename { get; set; }
+
+        [Display(Name = "Name")]
+        public string FullName { get; }
     }
 
     [MetadataType(typeof(UserDetailsMetadata))]
-    public partial class UserDetails { } 
+    public partial class UserDetails
+    {
+        public string FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
+    } 
 }

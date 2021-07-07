@@ -17,6 +17,7 @@ namespace JobBoard.DATA
         public string Title { get; set; }
 
         [Display(Name = "Job Description")]
+        [UIHint("MultilineText")]
         public string JobDescription { get; set; }
     }
 

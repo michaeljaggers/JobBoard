@@ -25,7 +25,7 @@ namespace JobBoard.DATA
         [StringLength(2, ErrorMessage = "Maximum length is 2 characters.")]
         public string State { get; set; }
 
-        [Display(Name = "Manager ID")]
+        [Display(Name = "Manager")]
         [StringLength(128, ErrorMessage = "Maximum length is 128 characters.")]
         public string ManagerId { get; set; }
     }

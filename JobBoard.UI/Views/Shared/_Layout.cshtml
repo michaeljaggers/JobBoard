@@ -15,6 +15,9 @@
     @Styles.Render("~/Content/bootstrap")
     <!-- Material CSS -->
     @Styles.Render("~/Content/material")
+    <!-- DataTables -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
     <!-- Font Awesome CSS -->
     @Styles.Render("~/Content/fontawesome")
     <!-- Extras -->
@@ -53,105 +56,66 @@
                                         Home
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="about.html">
-                                        Pages <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown">
-                                        <li>
-                                            <a href="about.html">
-                                                About
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="job-page.html">
-                                                Job Page
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="job-details.html">
-                                                Job Details
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="resume.html">
-                                                Resume Page
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="privacy-policy.html">
-                                                Privacy Policy
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="faq.html">
-                                                FAQ
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="pricing.html">
-                                                Pricing Tables
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="contact.html">
-                                                Contact
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Candidates <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown">
-                                        <li>
-                                            <a href="browse-jobs.html">
-                                                Browse Jobs
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="browse-categories.html">
-                                                Browse Categories
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="add-resume.html">
-                                                Add Resume
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="manage-resumes.html">
-                                                Manage Resumes
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="job-alerts.html">
-                                                Job Alerts
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+                                {
+                                    <li>
+                                        <a href="#">
+                                            Employees <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown">
+                                            <li>
+                                                <a href="browse-jobs.html">
+                                                    Browse Jobs
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="add-resume.html">
+                                                    Add Resume
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    View My Applications
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                                @if (Request.IsAuthenticated && User.IsInRole("Manager"))
+                                {
+                                    <li>
+                                        <a href="#">
+                                            Managers <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown">
+                                            <li>
+                                                <a href="#">
+                                                    Manage Open Positions
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Manage Applications
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
                                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                                 {
                                     <li>
                                         <a href="#">
-                                            Admin <i class="fa fa-angle-down"></i>
+                                            Administrator <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="dropdown">
                                             <li>
-                                                <a href=@Url.Action("Index", "Applications")>
-                                                    Manage Applications
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href=@Url.Action("Index", "ApplicationStatus")>
-                                                    Manage Application Statuses
-                                                </a>
-                                            </li>
-                                            <li>
                                                 <a href=@Url.Action("Index", "Locations")>
                                                     Manage Locations
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Index", "Positions")>
+                                                    Manage Positions
                                                 </a>
                                             </li>
                                             <li>
@@ -160,8 +124,13 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href=@Url.Action("Index", "Positions")>
-                                                    Manage Positions
+                                                <a href=@Url.Action("Index", "Applications")>
+                                                    View Applications
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Index", "ApplicationStatus")>
+                                                    Manage Application Statuses
                                                 </a>
                                             </li>
                                             <li>
@@ -179,7 +148,7 @@
                                 }
                                 <li><a href=@Url.Action("Contact", "Home")>Contact</a></li>
                             </ul>
-                                @Html.Partial("_LoginPartial")
+                            @Html.Partial("_LoginPartial")
                         </div>
                     </div>
                     <!-- Mobile Menu Start -->
@@ -316,6 +285,8 @@
 
     <!-- JavaScript -->
     @Scripts.Render("~/bundles/scripts")
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script type="text/javascript" src="~/Scripts/custom.js"></script>
     @RenderSection("scripts", required: false)
 

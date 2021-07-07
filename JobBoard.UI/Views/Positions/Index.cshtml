@@ -10,30 +10,42 @@
         <p>
             @Html.ActionLink("Create New", "Create")
         </p>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+        <table id="datatablesSimple">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.PositionId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.PositionId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.PositionId })
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
                 </tr>
-            }
-
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PositionId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.PositionId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PositionId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
         </table>
     </div>
 </section>

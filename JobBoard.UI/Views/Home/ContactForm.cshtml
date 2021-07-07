@@ -1,20 +1,10 @@
 ﻿@model JobBoard.UI.Models.ContactViewModel
 
-<div id="contactForm" class="col-lg-12 py-5">
-    @using (Ajax.BeginForm("Contact", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "contactForm" }, new { id = "ContactForm", @class = "contact-form col-lg-8 col-lg-offset-2 mx-auto container" }))
+<div class="col-lg-12 py-5">
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "ContactCreateForm", @class = "contact-form col-lg-8 col-lg-offset-2 mx-auto container" }))
     {
         @Html.AntiForgeryToken()
-
-        if (ViewBag.Success != null)
-        {
-            <div class="alert-success">@Html.Raw(ViewBag.Success)</div>
-        }
-
-        if (ViewBag.Error != null)
-        {
-            <div class="alert-error">@Html.Raw(ViewBag.Error)</div>
-        }
-
+        
         <h4 class="text-center">Send a Message</h4>
         <hr />
 

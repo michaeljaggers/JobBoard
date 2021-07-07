@@ -12,7 +12,7 @@ namespace JobBoard.UI.Models
         public string Name { get; set; }
 
         [Required]
-        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]

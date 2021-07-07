@@ -8,10 +8,33 @@
                 <h2 class="section-title">@ViewBag.Title</h2>
             </div>
         </div>
-        @Html.Partial("ContactForm")
+        <div id="contactConfirm">
+            @Html.Partial("EmailConfirm", new JobBoard.UI.Models.ContactViewModel())
+        </div>
+        <div id="contactForm">
+            @Html.Partial("ContactForm", new JobBoard.UI.Models.ContactViewModel())
+        </div>
     </div>
 </section>
 
 @section scripts {
     @Scripts.Render("~/bundles/contact")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script>
+        $("#ContactCreateForm").submit(function (e) {
+            var formData = $(this).serializeArray();
+            e.preventDefault();
+
+            $.ajax({
+                url: '@Url.Action("ContactAjax", "Home")',
+                type: 'POST',
+                data: formData,
+                datatype: 'json',
+                success: function (data) {
+                    $("contactForm").hide();
+                }
+            });
+
+        });
+    </script>
 }

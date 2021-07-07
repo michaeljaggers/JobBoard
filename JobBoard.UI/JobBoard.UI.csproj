@@ -606,6 +606,7 @@
     <Content Include="Views\Positions\Edit.cshtml" />
     <Content Include="Views\Positions\Index.cshtml" />
     <Content Include="Views\Home\ContactForm.cshtml" />
+    <Content Include="Views\Home\EmailConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

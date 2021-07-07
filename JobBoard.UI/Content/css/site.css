@@ -5,3 +5,7 @@
     opacity: 1;
     position: relative;
 }
+
+#contactConfirm {
+    display: none;
+}

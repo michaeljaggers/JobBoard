@@ -29,13 +29,8 @@ namespace JobBoard.UI.Controllers
 
         // POST: Home/Contact
         [HttpPost]
-        public ActionResult Contact(ContactViewModel cvm)
+        public JsonResult ContactAjax(ContactViewModel cvm)
         {
-            if (!ModelState.IsValid)
-            {
-                return PartialView("ContactForm", cvm);
-            }
-
             string message = $"You have received a new contact form submisson.<br /><br />" +
                                 $"Name: {cvm.Name}<br />" +
                                 $"Email: {cvm.Email}<br />" +
@@ -69,14 +64,11 @@ namespace JobBoard.UI.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = $"<div class=\"alert alert-danger\" role=\"alert\">Your message cannot be sent at this time.<br />Error: {ex.Message}</div>";
-
-                return PartialView("ContactForm", cvm);
+                ViewBag.Message = ex.StackTrace;
             }
-
             ModelState.Clear();
             ViewBag.Success = $"<div class=\"alert alert-success\" role=\"alert\">Message sent.</div>";
-            return PartialView("ContactForm");
+            return Json(cvm);
         }
     }
 }

@@ -20,7 +20,6 @@ namespace JobBoard.UI
                         "~/Scripts/waypoints.min.js",
                         "~/Scripts/bootstrap-select.min.js",
                         "~/Scripts/form-validator.min.js",
-                        "~/Scripts/contact-form-script.js",
                         "~/Scripts/jquery.themepunch.revolution.min.js",
                         "~/Scripts/jquery.themepunch.tools.min.js"));
 
