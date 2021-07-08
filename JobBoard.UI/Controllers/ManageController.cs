@@ -3,7 +3,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -94,6 +93,148 @@ namespace JobBoard.UI.Controllers
                 message = ManageMessageId.Error;
             }
             return RedirectToAction("ManageLogins", new { Message = message });
+        }
+
+        //
+        // GET: /Account/AddPhoneNumber
+        [HttpGet]
+        public ActionResult AddPhoneNumber()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/AddPhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            // Generate the token and send it
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
+            if (UserManager.SmsService != null)
+            {
+                var message = new IdentityMessage
+                {
+                    Destination = model.Number,
+                    Body = "Your security code is: " + code
+                };
+                await UserManager.SmsService.SendAsync(message);
+            }
+            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+        }
+
+        //
+        // POST: /Manage/RememberBrowser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RememberBrowser()
+        {
+            var rememberBrowserIdentity = AuthenticationManager.CreateTwoFactorRememberBrowserIdentity(User.Identity.GetUserId());
+            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, rememberBrowserIdentity);
+            return RedirectToAction("Index", "Manage");
+        }
+
+        //
+        // POST: /Manage/ForgetBrowser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgetBrowser()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+            return RedirectToAction("Index", "Manage");
+        }
+
+        //
+        // POST: /Manage/EnableTFA
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EnableTFA()
+        {
+            var userId = User.Identity.GetUserId();
+            await UserManager.SetTwoFactorEnabledAsync(userId, true);
+            var user = await UserManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                await SignInAsync(user, isPersistent: false);
+            }
+            return RedirectToAction("Index", "Manage");
+        }
+
+        //
+        // POST: /Manage/DisableTFA
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DisableTFA()
+        {
+            var userId = User.Identity.GetUserId();
+            await UserManager.SetTwoFactorEnabledAsync(userId, false);
+            var user = await UserManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                await SignInAsync(user, isPersistent: false);
+            }
+            return RedirectToAction("Index", "Manage");
+        }
+
+        //
+        // GET: /Account/VerifyPhoneNumber
+        [HttpGet]
+        public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
+        {
+            // This code allows you exercise the flow without actually sending codes
+            // For production use please register a SMS provider in IdentityConfig and generate a code here.
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
+            ViewBag.Status = "For DEMO purposes only, the current code is " + code;
+            return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
+        }
+
+        //
+        // POST: /Account/VerifyPhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var userId = User.Identity.GetUserId();
+            var result = await UserManager.ChangePhoneNumberAsync(userId, model.PhoneNumber, model.Code);
+            if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(userId);
+                if (user != null)
+                {
+                    await SignInAsync(user, isPersistent: false);
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
+            }
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", "Failed to verify phone");
+            return View(model);
+        }
+
+        //
+        // GET: /Account/RemovePhoneNumber
+        [HttpGet]
+        public async Task<ActionResult> RemovePhoneNumber()
+        {
+            var userId = User.Identity.GetUserId();
+            var result = await UserManager.SetPhoneNumberAsync(userId, null);
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("Index", new { Message = ManageMessageId.Error });
+            }
+            var user = await UserManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                await SignInAsync(user, isPersistent: false);
+            }
+            return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
         //
@@ -211,7 +352,7 @@ namespace JobBoard.UI.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
-        // GET: /Account/UploadResume
+        // GET: /Manage/UploadResume
         public ActionResult UploadResume()
         {
             return View();
@@ -251,7 +392,6 @@ namespace JobBoard.UI.Controllers
                     resumeFile.SaveAs(savePath + file);
                 }
 
-                db.user.
             }
 
             #endregion
@@ -259,12 +399,9 @@ namespace JobBoard.UI.Controllers
             return View();
         }
 
-    }
-}
-
-#region Helpers
-// Used for XSRF protection when adding external logins
-private const string XsrfKey = "XsrfId";
+        #region Helpers
+        // Used for XSRF protection when adding external logins
+        private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {

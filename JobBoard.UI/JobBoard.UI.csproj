@@ -608,7 +608,7 @@
     <Content Include="Views\Home\ContactForm.cshtml" />
     <Content Include="Views\Home\EmailConfirm.cshtml" />
     <Content Include="Views\OpenPositions\FindJob.cshtml" />
-    <Content Include="Views\Account\UploadResume.cshtml" />
+    <Content Include="Views\Manage\UploadResume.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
