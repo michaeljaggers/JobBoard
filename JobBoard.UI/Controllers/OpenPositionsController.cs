@@ -21,6 +21,13 @@ namespace JobBoard.UI.Controllers
             return View(openPositions1.ToList());
         }
 
+        // GET: OpenPositions/FindJob
+        public ActionResult FindJob()
+        {
+            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position);
+            return View(openPositions1.ToList());
+        }
+
         // GET: OpenPositions/Details/5
         public ActionResult Details(int? id)
         {

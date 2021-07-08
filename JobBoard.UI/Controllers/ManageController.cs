@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -210,9 +211,60 @@ namespace JobBoard.UI.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
-        #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        // GET: /Account/UploadResume
+        public ActionResult UploadResume()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/UploadResume
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UploadResume(HttpPostedFileBase resumeFile)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = await UserManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return View("Error");
+            }
+
+            #region Resume Upload
+            string file = null;
+
+            if (resumeFile != null)
+            {
+                file = resumeFile.FileName;
+
+                string ext = file.Substring(file.LastIndexOf('.'));
+
+                string[] goodExts = { ".pdf", ".doc", ".docx", ".rtf", ".txt" };
+
+                if (goodExts.Contains(ext.ToLower()))
+                {
+                    file = resumeFile.FileName;
+
+                    string savePath = Server.MapPath("~/Content/resumes/");
+
+                    resumeFile.SaveAs(savePath + file);
+                }
+
+                db.user.
+            }
+
+            #endregion
+
+            return View();
+        }
+
+    }
+}
+
+#region Helpers
+// Used for XSRF protection when adding external logins
+private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {

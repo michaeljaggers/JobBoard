@@ -64,12 +64,12 @@
                                         </a>
                                         <ul class="dropdown">
                                             <li>
-                                                <a href="browse-jobs.html">
+                                                <a href=@Url.Action("FindJob", "OpenPositions")>
                                                     Browse Jobs
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="add-resume.html">
+                                                <a href=@Url.Action("UploadResume", "Manage")>
                                                     Add Resume
                                                 </a>
                                             </li>
@@ -89,7 +89,7 @@
                                         </a>
                                         <ul class="dropdown">
                                             <li>
-                                                <a href="#">
+                                                <a href=@Url.Action("Index", "OpenPositions")>
                                                     Manage Open Positions
                                                 </a>
                                             </li>

@@ -20,6 +20,8 @@ namespace JobBoard.UI.Controllers
         {
             var locations1 = db.Locations1.Include(l => l.UserDetail);
             return View(locations1.ToList());
+
+            
         }
 
         // GET: Locations/Details/5

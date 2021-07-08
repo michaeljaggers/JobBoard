@@ -1,0 +1,55 @@
+﻿@model IEnumerable<JobBoard.DATA.OpenPositions>
+
+@{
+    ViewBag.Title = "Find Your Next Job";
+}
+<!-- Page Header Start -->
+<div class="page-header" style="background: url(../../Content/img/banner1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Find Your Next Job</h2>
+                    <ol class="breadcrumb">
+                        <li><a href=@Url.Action("Index", "Home")><i class="ti-home"></i> Home</a></li>
+                        <li class="current">Find Job</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<section class="find-job section">
+    <div class="container">
+        <h2 class="section-title">@ViewBag.Title</h2>
+        <div class="row">
+            <div class="col-md-12">
+                @foreach (var item in Model)
+                {
+                    <div class="job-list">
+                        <div class="thumb">
+                            <a href=@Url.Action("JobDetails", "OpenPositions")><img src="~/Content/img/jobs/img-1.jpg" alt=""></a>
+                        </div>
+                        <div class="job-list-content">
+                            <h4><a href=@Url.Action("JobDetails", "OpenPositions")>@Html.DisplayFor(modelItem => item.Position.Title)</a></h4>
+                            <p>@item.Position.JobDescription</p>
+                            <div class="job-tag">
+                                <div class="pull-left">
+                                    <div class="meta-tag">
+                                        <span><i class="ti-location-pin"></i>@item.Location.City, @item.Location.State, USA</span>
+                                        <span><i class="ti-time"></i>Full-Time</span>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="btn btn-common btn-rm">Apply</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
