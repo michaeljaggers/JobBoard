@@ -13,7 +13,7 @@ namespace JobBoard.DATA
         public int LocationId { get; set; }
 
         [Required]
-        [Display(Name = "Store Number")]
+        [Display(Name = "Location Number")]
         [StringLength(10, ErrorMessage = "Maximum length is 10 characters.")]
         public string StoreNumber { get; set; }
 

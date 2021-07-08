@@ -8,32 +8,56 @@
     <div class="container">
         <h2 class="section-title">@ViewBag.Title</h2>
         <p>
-            @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Create New Location", "Create")
         </p>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.StoreNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.City)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.State)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UserDetail.FullName)
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StoreNumber)
+                    </th>
+                    <th>
+                        Location Manager
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.State)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StoreNumber)
+                    </th>
+                    <th>
+                        Location Manager
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.State)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.StoreNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserDetail.FullName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.City)
@@ -42,16 +66,13 @@
                         @Html.DisplayFor(modelItem => item.State)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserDetail.FullName)
-                    </td>
-                    <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.LocationId }) |
                         @Html.ActionLink("Details", "Details", new { id = item.LocationId }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.LocationId })
                     </td>
                 </tr>
-            }
-
+                }
+            </tbody>
         </table>
     </div>
 </section>

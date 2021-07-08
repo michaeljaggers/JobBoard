@@ -42,9 +42,25 @@ namespace JobBoard.UI.Controllers
         // GET: Locations/Create
         public ActionResult Create()
         {
-            // TODO: Get only users in the manager role to populate in the dropdown when creating a location.
+            // Get only users with the manager role to populate SelectList
+            List<AspNetUser> users = new List<AspNetUser>();
+            var roles = db.AspNetRoles;
+            foreach (var role in roles)
+            {
+                if (role.Name == "Manager")
+                {
+                    users = role.AspNetUsers.ToList();
+                }
+            }
 
-            ViewBag.ManagerId = new SelectList(db.UserDetails1, "UserId", "FirstName");
+            List<UserDetails> managers = new List<UserDetails>();
+            foreach (var user in users)
+            {
+                UserDetails manager = db.UserDetails1.Where(m => m.UserId == user.Id).FirstOrDefault();
+                managers.Add(manager);
+            }
+
+            ViewBag.ManagerId = new SelectList(managers, "UserId", "FullName");
             return View();
         }
 
@@ -55,6 +71,24 @@ namespace JobBoard.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LocationId,StoreNumber,City,State,ManagerId")] Locations locations)
         {
+            // Get only users with the manager role to populate SelectList
+            List<AspNetUser> users = new List<AspNetUser>();
+            var roles = db.AspNetRoles;
+            foreach (var role in roles)
+            {
+                if (role.Name == "Manager")
+                {
+                    users = role.AspNetUsers.ToList();
+                }
+            }
+
+            List<UserDetails> managers = new List<UserDetails>();
+            foreach (var user in users)
+            {
+                UserDetails manager = db.UserDetails1.Where(m => m.UserId == user.Id).FirstOrDefault();
+                managers.Add(manager);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Locations1.Add(locations);
@@ -62,13 +96,31 @@ namespace JobBoard.UI.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ManagerId = new SelectList(db.UserDetails1, "UserId", "FirstName", locations.ManagerId);
+            ViewBag.ManagerId = new SelectList(managers, "UserId", "FullName", locations.ManagerId);
             return View(locations);
         }
 
         // GET: Locations/Edit/5
         public ActionResult Edit(int? id)
         {
+            // Get only users with the manager role to populate SelectList
+            List<AspNetUser> users = new List<AspNetUser>();
+            var roles = db.AspNetRoles;
+            foreach (var role in roles)
+            {
+                if (role.Name == "Manager")
+                {
+                    users = role.AspNetUsers.ToList();
+                }
+            }
+
+            List<UserDetails> managers = new List<UserDetails>();
+            foreach (var user in users)
+            {
+                UserDetails manager = db.UserDetails1.Where(m => m.UserId == user.Id).FirstOrDefault();
+                managers.Add(manager);
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -78,7 +130,7 @@ namespace JobBoard.UI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ManagerId = new SelectList(db.UserDetails1, "UserId", "FirstName", locations.ManagerId);
+            ViewBag.ManagerId = new SelectList(managers, "UserId", "FullName", locations.ManagerId);
             return View(locations);
         }
 
@@ -89,13 +141,31 @@ namespace JobBoard.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "LocationId,StoreNumber,City,State,ManagerId")] Locations locations)
         {
+            // Get only users with the manager role to populate SelectList
+            List<AspNetUser> users = new List<AspNetUser>();
+            var roles = db.AspNetRoles;
+            foreach (var role in roles)
+            {
+                if (role.Name == "Manager")
+                {
+                    users = role.AspNetUsers.ToList();
+                }
+            }
+
+            List<UserDetails> managers = new List<UserDetails>();
+            foreach (var user in users)
+            {
+                UserDetails manager = db.UserDetails1.Where(m => m.UserId == user.Id).FirstOrDefault();
+                managers.Add(manager);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(locations).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ManagerId = new SelectList(db.UserDetails1, "UserId", "FirstName", locations.ManagerId);
+            ViewBag.ManagerId = new SelectList(managers, "UserId", "FullName", locations.ManagerId);
             return View(locations);
         }
 
