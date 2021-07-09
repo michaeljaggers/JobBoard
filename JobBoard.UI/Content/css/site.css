@@ -23,3 +23,16 @@
 .btn.btn-info:active {
     background-color: #303030;
 }
+
+.dataTable-table > tbody > tr > td,
+.dataTable-table > tbody > tr > th,
+.dataTable-table > tfoot > tr > td,
+.dataTable-table > tfoot > tr > th,
+.dataTable-table > thead > tr > td,
+.dataTable-table > thead > tr > th {
+    padding: 10px;
+}
+
+.pager {
+    margin: 0;
+}
