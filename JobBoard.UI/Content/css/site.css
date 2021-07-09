@@ -11,5 +11,15 @@
 }
 
 .manage .medium-title {
-    margin-bottom: 10px;
+    margin-bottom: 40px;
+}
+
+.btn.btn-info {
+    text-transform: uppercase;
+    background-color: #202020;
+}
+
+.btn.btn-info:hover,
+.btn.btn-info:active {
+    background-color: #303030;
 }

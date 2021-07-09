@@ -10,36 +10,51 @@
         <p>
             @Html.ActionLink("Create New Application Status", "Create", null, new { @class = "btn btn-common" })
         </p>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.StatusName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StatusDescription)
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+        <table id="datatablesSimple">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StatusName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StatusDescription)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationStatusId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ApplicationStatusId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationStatusId })
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StatusName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StatusDescription)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
                 </tr>
-            }
-
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StatusName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StatusDescription)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StatusName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StatusDescription)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationStatusId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ApplicationStatusId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationStatusId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
         </table>
     </div>
 </section>
