@@ -53,7 +53,7 @@ namespace JobBoard.UI
             bundles.Add(new StyleBundle("~/Content/theme").Include(
                       "~/Content/css/main.css",
                       "~/Content/css/responsive.css",
-                      "~/Content/css/colors/sky.css"));
+                      "~/Content/css/colors/red.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/site.css"));

@@ -194,6 +194,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\color-switcher.css" />
     <Content Include="Content\css\colors\blue.css" />
+    <Content Include="Content\css\colors\red.css" />
     <Content Include="Content\css\colors\sky.css" />
     <Content Include="Content\css\contacts.css" />
     <Content Include="Content\css\custom-components.css" />

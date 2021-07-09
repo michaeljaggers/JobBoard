@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<JobBoard.DATA.OpenPositions>
+
+@{
     ViewBag.Title = "Home";
 }
 
@@ -127,185 +129,34 @@
         <h2 class="section-title">Internal Positions</h2>
         <div class="row">
             <div class="col-md-12">
-                <div class="job-list">
-                    <div class="thumb">
-                        <a href="job-details.html"><img src="~/Content/img/jobs/img-1.jpg" alt=""></a>
-                    </div>
-                    <div class="job-list-content">
-                        <h4><a href="job-details.html">Need a web designer</a><span class="full-time">Full-Time</span></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quaerat aut veniam molestiae atque dolorum omnis temporibus consequuntur saepe. Nemo atque consectetur saepe corporis odit in dicta reprehenderit, officiis, praesentium?</p>
-                        <div class="job-tag">
-                            <div class="pull-left">
-                                <div class="meta-tag">
-                                    <span><a href="browse-categories.html"><i class="ti-brush"></i>Art/Design</a></span>
-                                    <span><i class="ti-location-pin"></i>Washington, USA</span>
-                                    <span><i class="ti-time"></i>60/Hour</span>
+                @foreach (var item in Model)
+                {
+                    <div class="job-list">
+                        <div class="thumb">
+                            <a href=@Url.Action("JobDetails", "OpenPositions")><img src="~/Content/img/jobs/img-1.jpg" alt=""></a>
+                        </div>
+                        <div class="job-list-content">
+                            <h4><a href=@Url.Action("JobDetails", "OpenPositions")>@Html.DisplayFor(modelItem => item.Position.Title)</a></h4>
+                            <p>@item.Position.JobDescription</p>
+                            <div class="job-tag">
+                                <div class="pull-left">
+                                    <div class="meta-tag">
+                                        <span><i class="ti-location-pin"></i>@item.Location.City, @item.Location.State, USA</span>
+                                        <span><i class="ti-time"></i>Full-Time</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="pull-right">
-                                <a href="job-details.html" class="btn btn-common btn-rm">Apply Job</a>
+                                <div class="pull-right">
+                                    <div class="btn btn-common btn-rm">Apply</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="job-list">
-                    <div class="thumb">
-                        <a href="job-details.html"><img src="~/Content/img/jobs/img-2.jpg" alt=""></a>
-                    </div>
-                    <div class="job-list-content">
-                        <h4><a href="job-details.html">Front-end developer needed</a><span class="full-time">Full-Time</span></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quaerat aut veniam molestiae atque dolorum omnis temporibus consequuntur saepe. Nemo atque consectetur saepe corporis odit in dicta reprehenderit, officiis, praesentium?</p>
-                        <div class="job-tag">
-                            <div class="pull-left">
-                                <div class="meta-tag">
-                                    <span><a href="browse-categories.html"><i class="ti-desktop"></i>Technologies</a></span>
-                                    <span><i class="ti-location-pin"></i>Cupertino, CA, USA</span>
-                                    <span><i class="ti-time"></i>60/Hour</span>
-                                </div>
-                            </div>
-                            <div class="pull-right">
-                                <a href="job-details.html" class="btn btn-common btn-rm">Apply Job</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="job-list">
-                    <div class="thumb">
-                        <a href="job-details.html"><img src="~/Content/img/jobs/img-3.jpg" alt=""></a>
-                    </div>
-                    <div class="job-list-content">
-                        <h4><a href="job-details.html">Senior Accountant</a><span class="part-time">Part-Time</span></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quaerat aut veniam molestiae atque dolorum omnis temporibus consequuntur saepe. Nemo atque consectetur saepe corporis odit in dicta reprehenderit, officiis, praesentium?</p>
-                        <div class="job-tag">
-                            <div class="pull-left">
-                                <div class="meta-tag">
-                                    <span><a href="browse-categories.html"><i class="ti-home"></i>Finance</a></span>
-                                    <span><i class="ti-location-pin"></i>Delaware, USA</span>
-                                    <span><i class="ti-time"></i>60/Hour</span>
-                                </div>
-                            </div>
-                            <div class="pull-right">
-                                <a href="job-details.html" class="btn btn-common btn-rm">Apply Job</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="job-list">
-                    <div class="thumb">
-                        <a href="job-details.html"><img src="~/Content/img/jobs/img-4.jpg" alt=""></a>
-                    </div>
-                    <div class="job-list-content">
-                        <h4><a href="job-details.html">Fullstack web developer needed</a><span class="full-time">Full-Time</span></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quaerat aut veniam molestiae atque dolorum omnis temporibus consequuntur saepe. Nemo atque consectetur saepe corporis odit in dicta reprehenderit, officiis, praesentium?</p>
-                        <div class="job-tag">
-                            <div class="pull-left">
-                                <div class="meta-tag">
-                                    <span><a href="browse-categories.html"><i class="ti-desktop"></i>Technologies</a></span>
-                                    <span><i class="ti-location-pin"></i>New York, USA</span>
-                                    <span><i class="ti-time"></i>60/Hour</span>
-                                </div>
-                            </div>
-                            <div class="pull-right">
-                                <a href="job-details.html" class="btn btn-common btn-rm">Apply Job</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
 </section>
 <!-- Find Job Section End -->
-<!-- Start Purchase Section -->
-<section class="section purchase" data-stellar-background-ratio="0.5">
-    <div class="container">
-        <div class="row">
-            <div class="section-content text-center">
-                <h1 class="title-text">
-                    Looking for an upgrade?
-                </h1>
-                <p>Take the next step and secure your future!</p>
-                <a href="my-account.html" class="btn btn-common">Get Started Now</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Purchase Section -->
-<!-- Category Section Start -->
-<section class="category section">
-    <div class="container">
-        <h2 class="section-title">Browse Categories</h2>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon">
-                            <i class="ti-home"></i>
-                        </div>
-                        <h3>Finance</h3>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon">
-                            <i class="ti-world"></i>
-                        </div>
-                        <h3>Sale/Markting</h3>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon">
-                            <i class="ti-book"></i>
-                        </div>
-                        <h3>Education/Training</h3>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon">
-                            <i class="ti-desktop"></i>
-                        </div>
-                        <h3>Technologies</h3>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon">
-                            <i class="ti-brush"></i>
-                        </div>
-                        <h3>Art/Design</h3>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon">
-                            <i class="ti-heart"></i>
-                        </div>
-                        <h3>Healthcare</h3>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon">
-                            <i class="ti-filter"></i>
-                        </div>
-                        <h3>Science</h3>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon">
-                            <i class="ti-cup"></i>
-                        </div>
-                        <h3>Food Services</h3>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Category Section End -->
 <!-- Testimonial Section Start -->
 <section id="testimonial" class="section">
     <div class="container">
@@ -496,47 +347,36 @@
 <section id="counter">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="counting">
                     <div class="icon">
                         <i class="ti-briefcase"></i>
                     </div>
                     <div class="desc">
-                        <h2>Jobs</h2>
-                        <h1 class="counter">12050</h1>
+                        <h2>Openings</h2>
+                        <h1 class="counter">@ViewBag.Openings</h1>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="counting">
                     <div class="icon">
                         <i class="ti-user"></i>
                     </div>
                     <div class="desc">
-                        <h2>Members</h2>
-                        <h1 class="counter">10890</h1>
+                        <h2>Accounts</h2>
+                        <h1 class="counter">@ViewBag.Accounts</h1>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="counting">
                     <div class="icon">
                         <i class="ti-write"></i>
                     </div>
                     <div class="desc">
-                        <h2>Resume</h2>
-                        <h1 class="counter">700</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="counting">
-                    <div class="icon">
-                        <i class="ti-heart"></i>
-                    </div>
-                    <div class="desc">
-                        <h2>Company</h2>
-                        <h1 class="counter">9050</h1>
+                        <h2>Resumes</h2>
+                        <h1 class="counter">@ViewBag.Resumes</h1>
                     </div>
                 </div>
             </div>

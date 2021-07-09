@@ -1,6 +1,6 @@
 ﻿@model JobBoard.UI.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage Account";
+    ViewBag.Title = "Manage Your Account";
 }
 
 <section class="find-job section">
@@ -10,8 +10,8 @@
         <div class="row">
             <div class="col-md-8">
                 <p>
-                    @(Model.HasPassword ? Html.ActionLink("Change your password", "ChangePassword")
-                                : Html.ActionLink("Pick a password", "SetPassword"))
+                    @(Model.HasPassword ? Html.ActionLink("Change your password", "ChangePassword", null, new { @class = "btn btn-common" })
+                                : Html.ActionLink("Pick a password", "SetPassword", null, new { @class = "btn btn-common" }))
                 </p>
             </div>
         </div>

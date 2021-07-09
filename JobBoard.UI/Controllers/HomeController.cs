@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Data;
+using System.Data.Entity;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
@@ -12,10 +14,16 @@ namespace JobBoard.UI.Controllers
 {
     public class HomeController : Controller
     {
+        private JobBoardEntities db = new JobBoardEntities();
+
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position);
+            ViewBag.Openings = db.OpenPositions1.Include(o => o.OpenPositionId).Count();
+            ViewBag.Accounts = db.AspNetUsers.Include(a => a.UserName).Count();
+            ViewBag.Resumes = db.UserDetails1.Where(r => r.ResumeFilename != null).Count();
+            return View(openPositions1.ToList());
         }
 
 
