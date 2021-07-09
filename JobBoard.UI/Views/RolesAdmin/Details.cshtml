@@ -4,9 +4,9 @@
     ViewBag.Title = "Role Details";
 }
 
-<section class="find-job section">
+<section class="manage section">
     <div class="container">
-        <h2 class="section-title">@ViewBag.Title</h2>
+        <h2 class="medium-title">@ViewBag.Title</h2>
         <div>
             <hr />
             <dl class="dl-horizontal">
@@ -37,8 +37,8 @@
             }
         </table>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Edit", "Edit", null, new { id = Model.Id, @class = "btn btn-common" }) 
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
         </p>
     </div>
 </section>

@@ -358,6 +358,7 @@
     <Content Include="_Archive\assets\fonts\themify-icons.css" />
     <Content Include="_Archive\assets\fonts\themify-icons\themify.svg" />
     <Content Include="_Archive\assets\img\about\img1.jpg" />
+    <Content Include="Content\img\Banner-Contact.jpg" />
     <Content Include="_Archive\assets\img\banner1.jpg" />
     <Content Include="_Archive\assets\img\bg\bg-intro-1.jpg" />
     <Content Include="_Archive\assets\img\bg\bg-intro.jpg" />

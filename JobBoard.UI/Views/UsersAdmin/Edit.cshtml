@@ -4,9 +4,9 @@
     ViewBag.Title = "Edit User";
 }
 
-<section class="find-job section">
+<section class="manage section">
     <div class="container">
-        <h2 class="section-title">@ViewBag.Title</h2>
+        <h2 class="medium-title">@ViewBag.Title</h2>
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Save" class="btn btn-common" />
                     </div>
                 </div>
             </div>

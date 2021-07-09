@@ -21,9 +21,9 @@
 </div>
 <!-- Page Header End -->
 
-<section class="find-job section">
+<section class="manage section">
     <div class="container">
-        <h2 class="section-title">@ViewBag.Title</h2>
+        <h2 class="mnedium-title">@ViewBag.Title</h2>
 
         @using (Html.BeginForm("UploadResume", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
         {
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" class="btn btn-default" value="Upload Resume" />
+                    <input type="submit" class="btn btn-common" value="Upload Resume" />
                 </div>
             </div>
         }

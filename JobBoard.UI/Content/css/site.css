@@ -9,3 +9,7 @@
 #contactConfirm {
     display: none;
 }
+
+.manage .medium-title {
+    margin-bottom: 10px;
+}
