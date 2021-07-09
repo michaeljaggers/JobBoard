@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Metadata\ApplicationsMetadata.cs" />
     <Compile Include="Metadata\ApplicationStatusMetadata.cs" />
+    <Compile Include="Metadata\AspNetUserMetadata.cs" />
     <Compile Include="Metadata\LocationsMetadata.cs" />
     <Compile Include="Metadata\OpenPositionsMetadata.cs" />
     <Compile Include="Metadata\PositionsMetadata.cs" />
