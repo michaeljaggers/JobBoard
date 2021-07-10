@@ -19,6 +19,10 @@ namespace JobBoard.DATA
         [Required]
         [Display(Name = "Location ID")]
         public int LocationId { get; set; }
+
+        [Required]
+        [Display(Name = "Featured Position")]
+        public bool IsFeatured { get; set; }
     }
 
     [MetadataType(typeof(OpenPositionsMetadata))]
