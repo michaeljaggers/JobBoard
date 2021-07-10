@@ -24,6 +24,10 @@
     background-color: #303030;
 }
 
+.table-card {
+    margin-top: 20px;
+}
+
 .dataTable-table > tbody > tr > td,
 .dataTable-table > tbody > tr > th,
 .dataTable-table > tfoot > tr > td,

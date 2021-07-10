@@ -10,58 +10,91 @@
         <p>
             @Html.ActionLink("Create New Application", "Create", null, new { @class = "btn btn-common" })
         </p>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ApplicationDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ManagerNotes)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ResumeFilename)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ApplicationStatu.StatusName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ApplicationDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ManagerNotes)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ResumeFilename)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ApplicationStatu.StatusName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OpenPosition.OpenPositionId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId })
-                    </td>
-                </tr>
-            }
-
-        </table>
+        <div class="card table-card">
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ApplicationDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ManagerNotes)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ResumeFilename)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ApplicationStatu.StatusName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ApplicationDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ManagerNotes)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ResumeFilename)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ApplicationStatu.StatusName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ApplicationDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ManagerNotes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ResumeFilename)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ApplicationStatu.StatusName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OpenPosition.OpenPositionId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </section>
