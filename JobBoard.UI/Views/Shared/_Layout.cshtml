@@ -157,38 +157,42 @@
                             <a class="active" href=@Url.Action("Index", "Home")>Home</a>
 
                         </li>
-                        <li>
-                            <a href="about.html">Pages</a>
-                            <ul>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="job-page.html">Job Page</a></li>
-                                <li><a href="job-details.html">Job Details</a></li>
-                                <li><a href="resume.html">Resume Page</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="pricing.html">Pricing Tables</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">For Candidates</a>
-                            <ul>
-                                <li><a href="browse-jobs.html">Browse Jobs</a></li>
-                                <li><a href="browse-categories.html">Browse Categories</a></li>
-                                <li><a href="add-resume.html">Add Resume</a></li>
-                                <li><a href="manage-resumes.html">Manage Resumes</a></li>
-                                <li><a href="job-alerts.html">Job Alerts</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">For Employers</a>
-                            <ul>
-                                <li><a href="post-job.html">Add Job</a></li>
-                                <li><a href="manage-jobs.html">Manage Jobs</a></li>
-                                <li><a href="manage-applications.html">Manage Applications</a></li>
-                                <li><a href="browse-resumes.html">Browse Resumes</a></li>
-                            </ul>
-                        </li>
+                        @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+                        {
+                            <li>
+                                <a href="#">Employees</a>
+                                <ul>
+                                    <li><a href=@Url.Action("FindJob", "OpenPositions")>Browse Jobs</a></li>
+                                    <li><a href=@Url.Action("UploadResume", "Manage")>Add Resume</a></li>
+                                    <li><a href="#">View My Applications</a></li>
+                                </ul>
+                            </li>
+                        }
+                        @if (Request.IsAuthenticated && User.IsInRole("Manager"))
+                        {
+                            <li>
+                                <a href="#">Managers</a>
+                                <ul>
+                                    <li><a href=@Url.Action("Index", "OpenPositions")>Manage Open Positions</a></li>
+                                    <li><a href="#">Manage Applications</a></li>
+                                </ul>
+                            </li>
+                        }
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a href="#">Administrator</a>
+                                <ul>
+                                    <li><a href=@Url.Action("Index", "Locations")>Manage Locations</a></li>
+                                    <li><a href=@Url.Action("Index", "Positions")>Manage Positions</a></li>
+                                    <li><a href=@Url.Action("Index", "OpenPositions")>Manage Open Positions</a></li>
+                                    <li><a href=@Url.Action("Index", "Applications")>View Applications</a></li>
+                                    <li><a href=@Url.Action("Index", "ApplicationStatus")>Manage Application Statuses</a></li>
+                                    <li><a href=@Url.Action("Index", "UsersAdmin")>Manage Users</a></li>
+                                    <li><a href=@Url.Action("Index", "RolesAdmin")>Manage Roles</a></li>
+                                </ul>
+                            </li>
+                        }
                         <li><a href=@Url.Action("Contact", "Home")>Contact</a></li>
                         <li class="btn-m"><a href="my-account.html"><i class="ti-lock"></i>  Log In</a></li>
 
@@ -284,7 +288,10 @@
     </div>
 
     <!-- JavaScript -->
+    @*<script src="https://code.jquery.com/jquery-2.1.4.js" integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>*@
     @Scripts.Render("~/bundles/scripts")
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>*@
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script type="text/javascript" src="~/Scripts/custom.js"></script>

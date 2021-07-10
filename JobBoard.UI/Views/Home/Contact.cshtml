@@ -1,4 +1,6 @@
-﻿@{
+﻿@model JobBoard.UI.Models.ContactViewModel
+
+@{
     ViewBag.Title = "Contact Tech Savvy";
 }
 
@@ -20,25 +22,28 @@
 </div>
 <!-- Page Header End -->
 
-<section class="find-job section">
+<section class="manage section">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2 class="medium-title">@ViewBag.Title</h2>
             </div>
         </div>
-        <div id="contactConfirm">
-            @Html.Partial("EmailConfirm", new JobBoard.UI.Models.ContactViewModel())
-        </div>
         <div id="contactForm">
-            @Html.Partial("ContactForm", new JobBoard.UI.Models.ContactViewModel())
+            <div class="row">
+                @Html.Partial("ContactForm", new JobBoard.UI.Models.ContactViewModel())
+            </div>
+        </div>
+        <div id="contactConfirm">
+            <div class="row">
+                @Html.Partial("EmailConfirm", new JobBoard.UI.Models.ContactViewModel())
+            </div>
         </div>
     </div>
 </section>
 
 @section scripts {
-    @Scripts.Render("~/bundles/contact")
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
         $("#ContactCreateForm").submit(function (e) {
             var formData = $(this).serializeArray();
@@ -50,7 +55,8 @@
                 data: formData,
                 datatype: 'json',
                 success: function (data) {
-                    $("contactForm").hide();
+                    $("#contactForm").hide();
+                    $("#contactConfirm").show();
                 }
             });
 

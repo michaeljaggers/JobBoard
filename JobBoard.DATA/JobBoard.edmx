@@ -74,6 +74,7 @@
           <Property Name="OpenPositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PositionId" Type="int" Nullable="false" />
           <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="IsFeatured" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Positions">
           <Key>
@@ -285,6 +286,7 @@
           <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_OpenPositions" FromRole="OpenPositions" ToRole="Applications" />
           <NavigationProperty Name="Location" Relationship="Self.FK_OpenPositions_Locations" FromRole="OpenPositions" ToRole="Locations" />
           <NavigationProperty Name="Position" Relationship="Self.FK_OpenPositions_Positions" FromRole="OpenPositions" ToRole="Positions" />
+          <Property Name="IsFeatured" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Positions">
           <Key>
@@ -488,6 +490,7 @@
           <EntitySetMapping Name="OpenPositions1">
             <EntityTypeMapping TypeName="JobBoardModel.OpenPositions">
               <MappingFragment StoreEntitySet="OpenPositions">
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
                 <ScalarProperty Name="OpenPositionId" ColumnName="OpenPositionId" />
                 <ScalarProperty Name="PositionId" ColumnName="PositionId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />

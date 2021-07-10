@@ -37,6 +37,7 @@ namespace JobBoard.UI.Controllers
 
         // POST: Home/Contact
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult ContactAjax(ContactViewModel cvm)
         {
             string message = $"You have received a new contact form submisson.<br /><br />" +
@@ -53,7 +54,8 @@ namespace JobBoard.UI.Controllers
                 // SUBJECT
                 "New contact form submission.",
                 // MESSAGE
-                message);
+                message
+            );
 
             mm.IsBodyHtml = true;
             mm.ReplyToList.Add(cvm.Email);
@@ -64,7 +66,8 @@ namespace JobBoard.UI.Controllers
                 // LOGIN
                 ConfigurationManager.AppSettings["EmailUser"].ToString(),
                 // PASSWORD
-                ConfigurationManager.AppSettings["EmailPass"].ToString());
+                ConfigurationManager.AppSettings["EmailPass"].ToString()
+            );
 
             try
             {
@@ -74,8 +77,8 @@ namespace JobBoard.UI.Controllers
             {
                 ViewBag.Message = ex.StackTrace;
             }
-            ModelState.Clear();
-            ViewBag.Success = $"<div class=\"alert alert-success\" role=\"alert\">Message sent.</div>";
+            //ModelState.Clear();
+            //ViewBag.Success = $"<div class=\"alert alert-success\" role=\"alert\">Message sent.</div>";
             return Json(cvm);
         }
     }

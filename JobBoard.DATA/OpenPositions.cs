@@ -23,6 +23,7 @@ namespace JobBoard.DATA
         public int OpenPositionId { get; set; }
         public int PositionId { get; set; }
         public int LocationId { get; set; }
+        public bool IsFeatured { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Applications> Applications { get; set; }

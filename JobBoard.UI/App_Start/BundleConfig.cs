@@ -21,11 +21,8 @@ namespace JobBoard.UI
                         "~/Scripts/bootstrap-select.min.js",
                         "~/Scripts/form-validator.min.js",
                         "~/Scripts/jquery.themepunch.revolution.min.js",
-                        "~/Scripts/jquery.themepunch.tools.min.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/contact").Include(
-                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.themepunch.tools.min.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

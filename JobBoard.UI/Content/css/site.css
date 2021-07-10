@@ -36,3 +36,14 @@
 .pager {
     margin: 0;
 }
+
+.col-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .navbar-default .navbar-nav.float-right {
+        display: block;
+    }
+}
