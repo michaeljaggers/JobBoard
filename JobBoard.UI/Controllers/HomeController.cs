@@ -26,6 +26,13 @@ namespace JobBoard.UI.Controllers
             return View(openPositions1.ToList());
         }
 
+        // GET: Featured Open Position Partial
+        public ActionResult FeaturedOpenPositions()
+        {
+            List<OpenPositions> featuredOpenPositions = db.OpenPositions1.Where(o => o.IsFeatured == true).ToList();
+            return PartialView("FeaturedOpenPositions", featuredOpenPositions);
+        }
+
 
         [HttpGet]
         public ActionResult Contact()

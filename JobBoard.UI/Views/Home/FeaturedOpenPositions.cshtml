@@ -1,0 +1,29 @@
+﻿@model IEnumerable<JobBoard.DATA.OpenPositions>
+
+@foreach (var item in Model)
+{
+    <!-- Featured Open Position -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="featured-item">
+            <div class="featured-wrap">
+                <div class="featured-inner">
+                    <figure class="item-thumb">
+                        <a class="hover-effect" href="job-page.html">
+                            <img src="~/Content/img/features/img-1.jpg" alt="">
+                        </a>
+                    </figure>
+                    <div class="item-body">
+                        <h3 class="job-title"><a href="job-page.html">@item.Position.Title</a></h3>
+                        <div class="adderess"><i class="ti-location-pin"></i> @item.Location.City, @item.Location.State, USA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="item-foot">
+                <span><i class="ti-time"></i> Full Time</span>
+                <div class="view-iocn">
+                    <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
