@@ -7,38 +7,42 @@
 <section class="manage section">
     <div class="container">
         <h2 class="medium-title">@ViewBag.Title</h2>
-        <div>
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.UserName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.UserName)
-                </dd>
-            </dl>
+        <div class="card table-card">
+            <div class="card-body">
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.UserName)
+                        </dd>
+                    </dl>
+                </div>
+                <h4>Roles for this user</h4>
+                @if (ViewBag.RoleNames.Count == 0)
+                {
+                    <hr />
+                    <p>No roles found for this user.</p>
+                }
+
+                <table class="table">
+
+                    @foreach (var item in ViewBag.RoleNames)
+                    {
+                        <tr>
+                            <td>
+                                @item
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-common" })
+                </p>
+            </div>
         </div>
-        <h4>Roles for this user</h4>
-        @if (ViewBag.RoleNames.Count == 0)
-        {
-            <hr />
-            <p>No roles found for this user.</p>
-        }
-
-        <table class="table">
-
-            @foreach (var item in ViewBag.RoleNames)
-            {
-                <tr>
-                    <td>
-                        @item
-                    </td>
-                </tr>
-            }
-        </table>
-        <p>
-            @Html.ActionLink("Edit", "Edit", null, new { id = Model.Id, @class = "btn btn-common" }) 
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
-        </p>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
     </div>
 </section>
 

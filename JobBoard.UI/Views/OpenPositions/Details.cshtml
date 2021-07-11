@@ -7,37 +7,41 @@
 <section class="manage section">
     <div class="container">
         <h2 class="medium-title">@ViewBag.Title</h2>
-        <div>
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Location.StoreNumber)
-                </dt>
+        <div class="card table-card">
+            <div class="card-body">
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Location.StoreNumber)
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Location.StoreNumber)
-                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Location.StoreNumber)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Position.Title)
-                </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Position.Title)
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Position.Title)
-                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Position.Title)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.IsFeatured):
-                </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.IsFeatured):
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.IsFeatured)
-                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.IsFeatured)
+                        </dd>
 
-            </dl>
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.OpenPositionId }, new { @class = "btn btn-common" })
+                </p>
+            </div>
         </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", null, new { id = Model.OpenPositionId, @class = "btn btn-common" }) 
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
-        </p>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
     </div>
 </section>

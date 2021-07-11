@@ -7,29 +7,32 @@
 <section class="manage section">
     <div class="container">
         <h2 class="medium-title">@ViewBag.Title</h2>
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+        <div class="card table-card">
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true)
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Name)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-common" />
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-common" />
-                    </div>
-                </div>
+                }
             </div>
-        }
-
+        </div>
         <div>
             @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
         </div>

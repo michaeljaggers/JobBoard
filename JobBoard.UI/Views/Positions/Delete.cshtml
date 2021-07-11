@@ -36,12 +36,12 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-actions no-color">
-
-                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
                             <input type="submit" value="Delete" class="btn btn-common" />
                         </div>
                     }
                 </div>
             </div>
         </div>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
+    </div>
 </section>

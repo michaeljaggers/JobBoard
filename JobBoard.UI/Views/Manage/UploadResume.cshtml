@@ -24,23 +24,26 @@
 <section class="manage section">
     <div class="container">
         <h2 class="mnedium-title">@ViewBag.Title</h2>
-
-        @using (Html.BeginForm("UploadResume", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary("", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(m => m.ResumeFilename, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    <input type="file" name="resumeFile" />
-                </div>
+        <div class="card table-card">
+            <div class="card-body">
+                @using (Html.BeginForm("UploadResume", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ResumeFilename, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            <input type="file" name="resumeFile" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-common" value="Upload Resume" />
+                        </div>
+                    </div>
+                }
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" class="btn btn-common" value="Upload Resume" />
-                </div>
-            </div>
-        }
+        </div>
     </div>
 </section>
 
