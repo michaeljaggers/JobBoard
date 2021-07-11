@@ -15,11 +15,17 @@ namespace JobBoard.UI.Controllers
     {
         private JobBoardEntities db = new JobBoardEntities();
 
-        // GET: Applications
+        // GET: Applications/Index
         public ActionResult Index()
         {
             var applications1 = db.Applications1.Include(a => a.ApplicationStatu).Include(a => a.OpenPosition).Include(a => a.UserDetail);
             return View(applications1.ToList());
+        }
+
+        // GET: Applications/MyApplications
+        public ActionResult MyApplications()
+        {
+            return View();
         }
 
         // GET: Applications/Details/5
@@ -40,29 +46,52 @@ namespace JobBoard.UI.Controllers
         // GET: Applications/Create
         public ActionResult Create()
         {
-            ViewBag.ApplicationStatus = new SelectList(db.ApplicationStatus1, "ApplicationStatusId", "StatusName");
-            ViewBag.OpenPositionId = new SelectList(db.OpenPositions1, "OpenPositionId", "OpenPositionId");
-            ViewBag.UserId = new SelectList(db.UserDetails1, "UserId", "FirstName");
             return View();
         }
 
         // POST: Applications/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ApplicationId,OpenPositionId,UserId,ApplicationDate,ManagerNotes,ApplicationStatus,ResumeFilename")] Applications applications)
+        public ActionResult Create(int openPositionId)
         {
-            if (ModelState.IsValid)
+            Applications applications = new Applications();
+
+            var userId = User.Identity.GetUserId();
+            var userDeets = db.UserDetails1.FirstOrDefault(u => u.UserId == userId);
+            string userResume = null;
+
+            if (userDeets != null)
             {
-                db.Applications1.Add(applications);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                userResume = userDeets.ResumeFilename;
             }
 
+            if (userResume != null)
+            {
+                applications.OpenPositionId = openPositionId;
+                applications.UserId = User.Identity.GetUserId();
+                applications.ApplicationDate = DateTime.Now;
+                applications.ApplicationStatus = 3;
+                applications.ResumeFilename = userResume;
+
+                if (ModelState.IsValid)
+                {
+                    db.Applications1.Add(applications);
+                    db.SaveChanges();
+                    return RedirectToAction("MyApplications");
+                }
+                
+            }
+            else
+            {
+                throw new Exception();
+                // TODO: Return message to View about needing resume before applying.
+            }
+            
+            
+
             ViewBag.ApplicationStatus = new SelectList(db.ApplicationStatus1, "ApplicationStatusId", "StatusName", applications.ApplicationStatus);
-            ViewBag.OpenPositionId = new SelectList(db.OpenPositions1, "OpenPositionId", "OpenPositionId", applications.OpenPositionId);
-            ViewBag.UserId = new SelectList(db.UserDetails1, "UserId", "FirstName", applications.UserId);
+            ViewBag.OpenPositionId = new SelectList(db.OpenPositions1, "OpenPositionId", "PositionId", applications.OpenPositionId);
+            ViewBag.UserId = new SelectList(db.UserDetails1, "UserId", "FullName", applications.UserId);
             return View(applications);
         }
 

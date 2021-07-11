@@ -47,8 +47,19 @@
     padding-right: 15px;
 }
 
+.job-search-box .form-control {
+    height: 45px;
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
     .navbar-default .navbar-nav.float-right {
         display: block;
+    }
+}
+
+@media (max-width: 767px) {
+    .job-search-box .submit {
+        width: 100%;
+        margin-bottom: 20px;
     }
 }

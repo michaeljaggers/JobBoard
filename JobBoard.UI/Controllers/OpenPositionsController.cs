@@ -17,15 +17,38 @@ namespace JobBoard.UI.Controllers
         // GET: OpenPositions
         public ActionResult Index()
         {
-            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position);
-            return View(openPositions1.ToList());
+            var openPositions = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position);
+            return View(openPositions.ToList());
         }
 
         // GET: OpenPositions/FindJob
-        public ActionResult FindJob()
+        public ActionResult FindJob(string searchString)
         {
-            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position);
-            return View(openPositions1.ToList());
+            var openPositions = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                openPositions = openPositions.Where(o => o.Position.Title.Contains(searchString)
+                                       || o.Location.City.Contains(searchString)
+                                       || o.Location.State.Contains(searchString));
+            }
+
+            return View(openPositions.ToList());
+        }
+
+        // GET: OpenPositions/JobDetails
+        public ActionResult JobDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            OpenPositions openPositions = db.OpenPositions1.Find(id);
+            if (openPositions == null)
+            {
+                return HttpNotFound();
+            }
+            return View(openPositions);
         }
 
         // GET: OpenPositions/Details/5

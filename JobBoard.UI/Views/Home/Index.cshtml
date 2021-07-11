@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<JobBoard.DATA.OpenPositions>
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Home";
@@ -145,9 +146,19 @@
                                         <span><i class="ti-time"></i>Full-Time</span>
                                     </div>
                                 </div>
-                                <div class="pull-right">
-                                    <div class="btn btn-common btn-rm">Apply</div>
-                                </div>
+                                @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+                                {
+                                    <div class="pull-right">
+                                        @using (Html.BeginForm("Create", "Applications", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="openPositionId" value="@item.OpenPositionId" />
+                                            <div class="form-group">
+                                                <input type="submit" value="Apply" class="btn btn-common" />
+                                            </div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
