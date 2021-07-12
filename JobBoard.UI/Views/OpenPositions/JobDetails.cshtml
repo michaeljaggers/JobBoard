@@ -1,42 +1,113 @@
 ﻿@model JobBoard.DATA.OpenPositions
 
 @{
-    ViewBag.Title = "JobDetails";
+    ViewBag.Title = "Job Details";
 }
 
-<h2>JobDetails</h2>
-
-<div>
-    <h4>OpenPositions</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IsFeatured)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsFeatured)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location.StoreNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location.StoreNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Position.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Position.Title)
-        </dd>
-
-    </dl>
+<!-- Page Header Start -->
+<div class="page-header" style="background: url(../../Content/img/banner1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Job Details</h2>
+                    <ol class="breadcrumb">
+                        <li><a href=@Url.Action("Index", "Home")><i class="ti-home"></i> Home</a></li>
+                        <li class="current">Job Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OpenPositionId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- Page Header End -->
+<section class="job-detail section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="header-detail">
+                    <div class="header-content pull-left">
+                        <h3>@Model.Position.Title</h3>
+                        <p><span>Date Posted: mm/dd/yyyy</span></p>
+                    </div>
+                    <div class="detail-company pull-right text-right">
+                        <div class="img-thum">
+                            <img class="img-responsive" src="../../Content/img/jobs/img-1.jpg" alt="">
+                        </div>
+                        <div class="name">
+                            <h4>TechSavvy Inc.</h4>
+                            <h5>@Model.Location.City, @Model.Location.State</h5>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="content-area">
+                    <div class="clearfix">
+                        <div class="box">
+                            <h4>Job Description</h4>
+                            <p>@Model.Position.JobDescription</p>
+                            <h4>Qualifications</h4>
+                            <p>Minimum of # years experience in this field is required. Qualified candidates for this role will possess the following education, experience and skills:</p>
+                            <ul>
+                                <li><i class="ti-check-box"></i>Demonstrated strong and effective verbal, written, and interpersonal communication skills</li>
+                                <li><i class="ti-check-box"></i>Must be team-oriented, possess a positive attitude and work well with others</li>
+                                <li><i class="ti-check-box"></i>Ability to prioritize and multi-task in a flexible, fast paced and challenging environment</li>
+                            </ul>
+                            <h4>Key Responsibilities</h4>
+                            <ul>
+                                <li><i class="ti-check-box"></i>First Key Responsibility</li>
+                                <li><i class="ti-check-box"></i>Second Key Responsibility</li>
+                                <li><i class="ti-check-box"></i>Third Key Responsibility</li>
+                            </ul>
+                            @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+                            {
+
+                                    using (Html.BeginForm("Create", "Applications", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="openPositionId" value="@Model.OpenPositionId" />
+                                        <div class="form-group">
+                                            <input type="submit" value="Apply for this position" class="btn btn-common" />
+                                        </div>
+                                    }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <aside>
+                    <div class="sidebar">
+                        <div class="box">
+                            <h2 class="small-title">Job Details</h2>
+                            <ul class="detail-list">
+                                <li>
+                                    <span>Job Id</span>
+                                    <span class="type-posts">@Model.OpenPositionId</span>
+                                </li>
+                                <li>
+                                    <span>Location</span>
+                                    <span class="type-posts">@Model.Location.City, @Model.Location.State</span>
+                                </li>
+                                <li>
+                                    <span>Company</span>
+                                    <span class="type-posts">TechSavvy Inc.</span>
+                                </li>
+                                <li>
+                                    <span>Position Type</span>
+                                    <span class="type-posts">Internal-Hire</span>
+                                </li>
+                                <li>
+                                    <span>Employment Status</span>
+                                    <span class="type-posts">Full-Time</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>

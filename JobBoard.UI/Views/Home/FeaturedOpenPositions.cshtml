@@ -8,12 +8,12 @@
             <div class="featured-wrap">
                 <div class="featured-inner">
                     <figure class="item-thumb">
-                        <a class="hover-effect" href="job-page.html">
+                        <a class="hover-effect" href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })>
                             <img src="~/Content/img/features/img-1.jpg" alt="">
                         </a>
                     </figure>
                     <div class="item-body">
-                        <h3 class="job-title"><a href="job-page.html">@item.Position.Title</a></h3>
+                        <h3 class="job-title"><a href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })>@item.Position.Title</a></h3>
                         <div class="adderess"><i class="ti-location-pin"></i> @item.Location.City, @item.Location.State, USA</div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
             <div class="item-foot">
                 <span><i class="ti-time"></i> Full Time</span>
                 <div class="view-iocn">
-                    <a href="job-page.html"><i class="ti-arrow-right"></i></a>
+                    <a href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })><i class="ti-arrow-right"></i></a>
                 </div>
             </div>
         </div>
