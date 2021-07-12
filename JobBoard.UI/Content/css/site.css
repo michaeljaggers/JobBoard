@@ -1,6 +1,18 @@
 ﻿body {
 }
 
+#RememberMe {
+    opacity: 1;
+    position: inherit;
+    margin: inherit;
+    z-index: 0;
+    width: unset;
+    height: unset;
+    overflow: visible;
+    left: unset;
+    pointer-events: initial;
+}
+
 .form-group input[type=file] {
     opacity: 1;
     position: relative;

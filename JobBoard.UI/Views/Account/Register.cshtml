@@ -1,59 +1,62 @@
 ﻿@model JobBoard.UI.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register New Account";
+    ViewBag.Title = "Create an Account";
 }
 
 <section class="manage section">
     <div class="container">
         <h2 class="medium-title">@ViewBag.Title</h2>
+        <div class="card">
+            <div class="card-body">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
 
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-
-            @Html.ValidationSummary("", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                </div>
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ResumeFilename, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            <input type="file" name="resumeFile" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-common" value="Register" />
+                        </div>
+                    </div>
+                }
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.ResumeFilename, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    <input type="file" name="resumeFile" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" class="btn btn-common" value="Register" />
-                </div>
-            </div>
-        }
+        </div>
     </div>
 </section>
 
