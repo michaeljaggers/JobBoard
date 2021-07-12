@@ -25,7 +25,9 @@ namespace JobBoard.UI.Controllers
         // GET: Applications/MyApplications
         public ActionResult MyApplications()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var myApplications = db.Applications1.Where(a => a.UserId == userId);
+            return View(myApplications.ToList());
         }
 
         // GET: Applications/Details/5

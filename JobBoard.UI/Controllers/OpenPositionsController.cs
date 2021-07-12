@@ -36,7 +36,7 @@ namespace JobBoard.UI.Controllers
             return View(openPositions.ToList());
         }
 
-        // GET: OpenPositions/JobDetails
+        // GET: OpenPositions/JobDetails/5
         public ActionResult JobDetails(int? id)
         {
             if (id == null)
