@@ -89,10 +89,8 @@ namespace JobBoard.UI.Controllers
             if (Request.IsAuthenticated && User.IsInRole("Manager"))
             {
                 var managerLocations = db.Locations1.Where(o => o.LocationId == manager.LocationId).ToList();
-                var managerLocation = (from l in db.Locations1
-                                       where l.LocationId == manager.LocationId
-                                       select l).FirstOrDefault();
-                //var managerLocation = db.Locations1.FirstOrDefault(l => l.LocationId == userLocation.LocationId);
+
+                var managerLocation = managerLocations.FirstOrDefault().LocationId;
 
                 ViewBag.ManagerLocation = managerLocation;
                 ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
@@ -125,7 +123,8 @@ namespace JobBoard.UI.Controllers
             if (Request.IsAuthenticated && User.IsInRole("Manager"))
             {
                 var managerLocations = db.Locations1.Where(o => o.LocationId == manager.LocationId).ToList();
-                var managerLocation = db.Locations1.Select(l => l.LocationId == manager.LocationId);
+
+                var managerLocation = managerLocations.FirstOrDefault().LocationId;
 
                 ViewBag.ManagerLocation = managerLocation;
                 ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
@@ -157,7 +156,8 @@ namespace JobBoard.UI.Controllers
             if (Request.IsAuthenticated && User.IsInRole("Manager"))
             {
                 var managerLocations = db.Locations1.Where(o => o.LocationId == manager.LocationId).ToList();
-                var managerLocation = db.Locations1.Select(l => l.LocationId == manager.LocationId);
+
+                var managerLocation = managerLocations.FirstOrDefault().LocationId;
 
                 ViewBag.ManagerLocation = managerLocation;
                 ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
@@ -190,7 +190,8 @@ namespace JobBoard.UI.Controllers
             if (Request.IsAuthenticated && User.IsInRole("Manager"))
             {
                 var managerLocations = db.Locations1.Where(o => o.LocationId == manager.LocationId).ToList();
-                var managerLocation = db.Locations1.Select(l => l.LocationId == manager.LocationId);
+
+                var managerLocation = managerLocations.FirstOrDefault().LocationId;
 
                 ViewBag.ManagerLocation = managerLocation;
                 ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
