@@ -13,7 +13,7 @@ namespace JobBoard.DATA
         public int LocationId { get; set; }
 
         [Required]
-        [Display(Name = "Location Number")]
+        [Display(Name = "Location")]
         [StringLength(10, ErrorMessage = "Maximum length is 10 characters.")]
         public string StoreNumber { get; set; }
 
@@ -28,8 +28,17 @@ namespace JobBoard.DATA
         [Display(Name = "Manager")]
         [StringLength(128, ErrorMessage = "Maximum length is 128 characters.")]
         public string ManagerId { get; set; }
+
+        [Display(Name = "Location")]
+        public string LocationInfo { get; }
     }
 
     [MetadataType(typeof(LocationsMetadata))]
-    public partial class Locations { }
+    public partial class Locations
+    {
+        public string LocationInfo
+        {
+            get { return StoreNumber + " - " + City + ", " + State; }
+        }
+    }
 }

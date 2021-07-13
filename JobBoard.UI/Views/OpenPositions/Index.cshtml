@@ -16,50 +16,77 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Location.StoreNumber)
+                                @Html.DisplayNameFor(model => model.OpenPositionId)
                             </th>
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Location.LocationInfo)
+                                </th>
+                            }
                             <th>
                                 @Html.DisplayNameFor(model => model.Position.Title)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IsFeatured)
-                            </th>
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Location.ManagerId)
+                                </th>
+                            }
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Location.StoreNumber)
+                                @Html.DisplayNameFor(model => model.OpenPositionId)
                             </th>
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Location.LocationInfo)
+                                </th>
+                            }
                             <th>
                                 @Html.DisplayNameFor(model => model.Position.Title)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IsFeatured)
-                            </th>
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Location.ManagerId)
+                                </th>
+                            }
                             <th>Actions</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.OpenPositionId)
+                            </th>
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+                                    @Html.DisplayFor(modelItem => item.Location.LocationInfo)
                                 </td>
+                            }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Position.Title)
+                            </td>
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Position.Title)
+                                    @Html.DisplayFor(model => item.Location.UserDetail.FullName)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(model => item.IsFeatured)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionId }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.OpenPositionId }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionId })
-                                </td>
-                            </tr>
+                            }
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.OpenPositionId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionId })
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

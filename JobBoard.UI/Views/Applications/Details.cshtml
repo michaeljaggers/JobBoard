@@ -12,27 +12,35 @@
                 <div>
                     <dl class="dl-horizontal">
                         <dt>
+                            @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionId)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.OpenPosition.OpenPositionId)
+                        </dd>
+
+                        <dt>
                             @Html.DisplayNameFor(model => model.ApplicationDate)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.ApplicationDate)
+                            @Model.ApplicationDate.ToShortDateString()
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.ManagerNotes)
+                            @Html.DisplayNameFor(model => model.OpenPosition.Position.Title)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.ManagerNotes)
+                            @Html.DisplayFor(model => model.OpenPosition.Position.Title)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.ResumeFilename)
+                            @Html.DisplayNameFor(model => model.UserDetail.FullName)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.ResumeFilename)
+                            @Html.DisplayFor(model => model.UserDetail.FullName)
                         </dd>
 
                         <dt>
@@ -44,26 +52,28 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionId)
+                            @Html.DisplayNameFor(model => model.ResumeFilename)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.OpenPosition.OpenPositionId)
+                            <a class="download" href="~/Content/resumes/@Model.ResumeFilename">@Model.ResumeFilename</a>
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+                            @Html.DisplayNameFor(model => model.ManagerNotes)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.UserDetail.FirstName)
+                            @Html.DisplayFor(model => model.ManagerNotes)
                         </dd>
-
                     </dl>
                 </div>
-                <p>
-                    @Html.ActionLink("Edit", "Edit", null, new { id = Model.ApplicationId }, new { @class = "btn btn-common" })
-                </p>
+                @if (Request.IsAuthenticated && User.IsInRole("Manager"))
+                {
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", null, new { id = Model.ApplicationId }, new { @class = "btn btn-common" })
+                    </p>
+                }
             </div>
         </div>
         @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })

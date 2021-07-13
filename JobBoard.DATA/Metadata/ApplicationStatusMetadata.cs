@@ -13,7 +13,7 @@ namespace JobBoard.DATA
         public int ApplicationStatusId { get; set; }
 
         [Required]
-        [Display(Name = "Status Name")]
+        [Display(Name = "Status")]
         [StringLength(50, ErrorMessage = "Maximum length is 50 characters.")]
         public string StatusName { get; set; }
 

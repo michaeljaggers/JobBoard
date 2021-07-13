@@ -16,9 +16,18 @@ namespace JobBoard.UI.Controllers
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: Applications/Index
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+            var userLocation = db.Locations1.FirstOrDefault(u => u.ManagerId == userId);
             var applications1 = db.Applications1.Include(a => a.ApplicationStatu).Include(a => a.OpenPosition).Include(a => a.UserDetail);
+
+            if (Request.IsAuthenticated && User.IsInRole("Manager"))
+            {
+                applications1 = db.Applications1.Include(a => a.ApplicationStatu).Include(a => a.OpenPosition).Include(a => a.UserDetail).Where(a => a.OpenPosition.LocationId == userLocation.LocationId);
+            }
+
             return View(applications1.ToList());
         }
 
@@ -31,6 +40,7 @@ namespace JobBoard.UI.Controllers
         }
 
         // GET: Applications/Details/5
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,14 +56,15 @@ namespace JobBoard.UI.Controllers
         }
 
         // GET: Applications/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: Applications/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Employee")]
         public ActionResult Create(int openPositionId)
         {
             Applications applications = new Applications();
@@ -98,6 +109,7 @@ namespace JobBoard.UI.Controllers
         }
 
         // GET: Applications/Edit/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -120,6 +132,7 @@ namespace JobBoard.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit([Bind(Include = "ApplicationId,OpenPositionId,UserId,ApplicationDate,ManagerNotes,ApplicationStatus,ResumeFilename")] Applications applications)
         {
             if (ModelState.IsValid)
@@ -135,6 +148,7 @@ namespace JobBoard.UI.Controllers
         }
 
         // GET: Applications/Delete/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -152,6 +166,7 @@ namespace JobBoard.UI.Controllers
         // POST: Applications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public ActionResult DeleteConfirmed(int id)
         {
             Applications applications = db.Applications1.Find(id);
