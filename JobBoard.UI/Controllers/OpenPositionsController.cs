@@ -81,8 +81,18 @@ namespace JobBoard.UI.Controllers
         [Authorize(Roles = "Admin,Manager")]
         public ActionResult Create()
         {
+            var userId = User.Identity.GetUserId();
+            var userLocation = db.Locations1.FirstOrDefault(u => u.ManagerId == userId);
             ViewBag.LocationId = new SelectList(db.Locations1, "LocationId", "LocationInfo");
             ViewBag.PositionId = new SelectList(db.Positions1, "PositionId", "Title");
+
+            var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
+
+            if (Request.IsAuthenticated && User.IsInRole("Manager"))
+            {
+                ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
+            }
+
             return View();
         }
 
@@ -94,6 +104,11 @@ namespace JobBoard.UI.Controllers
         [Authorize(Roles = "Admin,Manager")]
         public ActionResult Create([Bind(Include = "OpenPositionId,PositionId,LocationId,IsFeatured")] OpenPositions openPositions)
         {
+            var userId = User.Identity.GetUserId();
+            var userLocation = db.Locations1.FirstOrDefault(u => u.ManagerId == userId);
+
+            var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
+
             if (ModelState.IsValid)
             {
                 db.OpenPositions1.Add(openPositions);
@@ -103,6 +118,12 @@ namespace JobBoard.UI.Controllers
 
             ViewBag.LocationId = new SelectList(db.Locations1, "LocationId", "LocationInfo", openPositions.LocationId);
             ViewBag.PositionId = new SelectList(db.Positions1, "PositionId", "Title", openPositions.PositionId);
+
+            if (Request.IsAuthenticated && User.IsInRole("Manager"))
+            {
+                ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
+            }
+            
             return View(openPositions);
         }
 
@@ -110,6 +131,11 @@ namespace JobBoard.UI.Controllers
         [Authorize(Roles = "Admin,Manager")]
         public ActionResult Edit(int? id)
         {
+            var userId = User.Identity.GetUserId();
+            var userLocation = db.Locations1.FirstOrDefault(u => u.ManagerId == userId);
+
+            var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -119,8 +145,15 @@ namespace JobBoard.UI.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.LocationId = new SelectList(db.Locations1, "LocationId", "LocationInfo", openPositions.LocationId);
             ViewBag.PositionId = new SelectList(db.Positions1, "PositionId", "Title", openPositions.PositionId);
+
+            if (Request.IsAuthenticated && User.IsInRole("Manager"))
+            {
+                ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
+            }
+
             return View(openPositions);
         }
 
@@ -132,14 +165,26 @@ namespace JobBoard.UI.Controllers
         [Authorize(Roles = "Admin,Manager")]
         public ActionResult Edit([Bind(Include = "OpenPositionId,PositionId,LocationId,IsFeatured")] OpenPositions openPositions)
         {
+            var userId = User.Identity.GetUserId();
+            var userLocation = db.Locations1.FirstOrDefault(u => u.ManagerId == userId);
+
+            var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
+
             if (ModelState.IsValid)
             {
                 db.Entry(openPositions).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.LocationId = new SelectList(db.Locations1, "LocationId", "LocationInfo", openPositions.LocationId);
             ViewBag.PositionId = new SelectList(db.Positions1, "PositionId", "Title", openPositions.PositionId);
+
+            if (Request.IsAuthenticated && User.IsInRole("Manager"))
+            {
+                ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
+            }
+
             return View(openPositions);
         }
 

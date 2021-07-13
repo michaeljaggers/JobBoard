@@ -1,7 +1,7 @@
 ﻿@model JobBoard.DATA.Applications
 
 @{
-    ViewBag.Title = "Applications Details";
+    ViewBag.Title = "Application Details";
 }
 
 <section class="manage section">
@@ -52,6 +52,14 @@
                         </dd>
 
                         <dt>
+                            @Html.DisplayNameFor(model => model.ManagerNotes)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ManagerNotes)
+                        </dd>
+
+                        <dt>
                             @Html.DisplayNameFor(model => model.ResumeFilename)
                         </dt>
 
@@ -59,13 +67,6 @@
                             <a class="download" href="~/Content/resumes/@Model.ResumeFilename">@Model.ResumeFilename</a>
                         </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ManagerNotes)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.ManagerNotes)
-                        </dd>
                     </dl>
                 </div>
                 @if (Request.IsAuthenticated && User.IsInRole("Manager"))
