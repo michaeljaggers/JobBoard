@@ -85,11 +85,11 @@ namespace JobBoard.UI.Controllers
             var userLocation = db.Locations1.FirstOrDefault(u => u.ManagerId == userId);
             ViewBag.LocationId = new SelectList(db.Locations1, "LocationId", "LocationInfo");
             ViewBag.PositionId = new SelectList(db.Positions1, "PositionId", "Title");
-
-            var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
-
+            
             if (Request.IsAuthenticated && User.IsInRole("Manager"))
             {
+                var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
+
                 ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
             }
 
@@ -106,9 +106,7 @@ namespace JobBoard.UI.Controllers
         {
             var userId = User.Identity.GetUserId();
             var userLocation = db.Locations1.FirstOrDefault(u => u.ManagerId == userId);
-
-            var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
-
+            
             if (ModelState.IsValid)
             {
                 db.OpenPositions1.Add(openPositions);
@@ -121,6 +119,8 @@ namespace JobBoard.UI.Controllers
 
             if (Request.IsAuthenticated && User.IsInRole("Manager"))
             {
+                var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
+
                 ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
             }
             
@@ -133,9 +133,7 @@ namespace JobBoard.UI.Controllers
         {
             var userId = User.Identity.GetUserId();
             var userLocation = db.Locations1.FirstOrDefault(u => u.ManagerId == userId);
-
-            var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
-
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -151,6 +149,8 @@ namespace JobBoard.UI.Controllers
 
             if (Request.IsAuthenticated && User.IsInRole("Manager"))
             {
+                var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
+
                 ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
             }
 
@@ -167,9 +167,7 @@ namespace JobBoard.UI.Controllers
         {
             var userId = User.Identity.GetUserId();
             var userLocation = db.Locations1.FirstOrDefault(u => u.ManagerId == userId);
-
-            var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
-
+            
             if (ModelState.IsValid)
             {
                 db.Entry(openPositions).State = EntityState.Modified;
@@ -182,6 +180,8 @@ namespace JobBoard.UI.Controllers
 
             if (Request.IsAuthenticated && User.IsInRole("Manager"))
             {
+                var managerLocations = db.Locations1.Where(o => o.LocationId == userLocation.LocationId).ToList();
+
                 ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
             }
 
