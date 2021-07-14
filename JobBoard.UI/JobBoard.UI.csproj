@@ -621,6 +621,8 @@
     <Content Include="Views\OpenPositions\JobDetails.cshtml" />
     <Content Include="Views\Applications\Create.cshtml" />
     <Content Include="Views\Applications\MyApplications.cshtml" />
+    <Content Include="Views\Shared\_MobileLoginPartial.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

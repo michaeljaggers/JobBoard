@@ -100,7 +100,7 @@
                                 {
                                     <li>
                                         <a href="#">
-                                            Administrator <i class="fa fa-angle-down"></i>
+                                            Admin <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="dropdown">
                                             <li>
@@ -141,7 +141,8 @@
                                         </ul>
                                     </li>
                                 }
-                                <li><a href=@Url.Action("FindJob", "OpenPositions")>Find Job</a></li>
+                                <li><a href=@Url.Action("FindJob", "OpenPositions")>Jobs</a></li>
+                                <li><a href=@Url.Action("About", "Home")>About</a></li>
                                 <li><a href=@Url.Action("Contact", "Home")>Contact</a></li>
                             </ul>
                             @Html.Partial("_LoginPartial")
@@ -176,7 +177,7 @@
                         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                         {
                             <li>
-                                <a href="#">Administrator</a>
+                                <a href="#">Admin</a>
                                 <ul>
                                     <li><a href=@Url.Action("Index", "Locations")>Manage Locations</a></li>
                                     <li><a href=@Url.Action("Index", "Positions")>Manage Positions</a></li>
@@ -188,9 +189,10 @@
                                 </ul>
                             </li>
                         }
-                        <li><a href=@Url.Action("FindJob", "OpenPositions")>Find Job</a></li>
+                        <li><a href=@Url.Action("FindJob", "OpenPositions")>Jobs</a></li>
+                        <li><a href=@Url.Action("About", "Home")>About</a></li>
                         <li><a href=@Url.Action("Contact", "Home")>Contact</a></li>
-                        <li class="btn-m"><a href="my-account.html"><i class="ti-lock"></i>  Log In</a></li>
+                        @Html.Partial("_MobileLoginPartial")
 
                     </ul>
                     <!-- Mobile Menu End -->
@@ -253,7 +255,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="site-info text-center">
-                            <p>&copy; @DateTime.Now.Year Tech Savvy - All rights reserved.</p>
+                            <p>&copy; @DateTime.Now.Year TechSavvy - All rights reserved.</p>
                         </div>
                     </div>
                 </div>

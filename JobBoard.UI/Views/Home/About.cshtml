@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "About Us";
+}
+
+<!-- Page Header Start -->
+<div class="page-header" style="background: url(../../Content/img/banner1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">@ViewBag.Title</h2>
+                    <ol class="breadcrumb">
+                        <li><a href=@Url.Action("Index", "Home")><i class="ti-home"></i> Home</a></li>
+                        <li class="current">About Us</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Main container Start -->
+<div class="about section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <img src="~/Content/img/about/img1.jpg" />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="about-content">
+                    <h2 class="medium-title">About TechSavvy</h2>
+                    <p class="desc">Please take a moment to check out the documentation available for the build of this site.</p>
+                    <p>Built using C# and the .Net Framework in MVC, this Job Board offers everything needed to create positions, manage locations, let candidates apply for their next job.</p>
+                    <p>Role-based access, file upload, and mobile-responsive friendly.</p>
+                    <a href="#" class="btn btn-common">Download Documentation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main container End -->
+<!-- Service  Section -->
+<section id="service-main" class="section">
+    <!-- Container Starts -->
+    <div class="container">
+        <h1 class="section-title text-center">
+            A smart & easy place for TechSavvy employees to:
+        </h1>
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="service-item">
+                    <div class="icon-wrapper">
+                        <i class="ti-search">
+                        </i>
+                    </div>
+                    <h2>
+                        Search Internal Positions
+                    </h2>
+                    <p>
+                        Search available positions only offered to internal candidates through our very own portal.
+                    </p>
+                </div>
+                <!-- Service-Block-1 Item Ends -->
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <!-- Service-Block-1 Item Starts -->
+                <div class="service-item">
+                    <div class="icon-wrapper">
+                        <i class="ti-world">
+                        </i>
+                    </div>
+                    <h2>
+                        Find By Location
+                    </h2>
+                    <p>
+                        Use the search box to whittle down the possibilities to those in the area you are intereted in.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="service-item">
+                    <div class="icon-wrapper">
+                        <i class="ti-stats-up">
+                        </i>
+                    </div>
+                    <h2>
+                        Advance Their Career
+                    </h2>
+                    <p>
+                        Keep a finger on the pulse of your future career.  Visit often to find your next potential fit!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Service Main Section Ends -->

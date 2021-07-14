@@ -33,6 +33,11 @@ namespace JobBoard.UI.Controllers
             return PartialView("FeaturedOpenPositions", featuredOpenPositions);
         }
 
+        [HttpGet]
+        public ActionResult About()
+        {
+            return View();
+        }
 
         [HttpGet]
         public ActionResult Contact()
