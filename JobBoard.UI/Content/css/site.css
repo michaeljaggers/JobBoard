@@ -29,6 +29,16 @@
     pointer-events: initial;
 }
 
+#testimonial p .quote-left {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+#testimonial p .quote-right {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
 .detail-company .img-thum {
     width: 68px;
 }
