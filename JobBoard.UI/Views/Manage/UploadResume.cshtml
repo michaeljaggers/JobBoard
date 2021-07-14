@@ -21,17 +21,30 @@
 </div>
 <!-- Page Header End -->
 
-<section class="manage section">
+<section class="manage resume-page section">
     <div class="container">
-        <h2 class="mnedium-title">@ViewBag.Title</h2>
+        <h2 class="medium-title">@ViewBag.Title</h2>
         <div class="card table-card">
             <div class="card-body">
+                @if (ViewBag.UserResume != null)
+                {
+                    <div class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-md-2 control-label">Current Resume</label>
+                            <div class="col-md-10">
+                                <a class="current-resume" href="~/Content/resumes/@ViewBag.UserResume">@ViewBag.UserResume</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+
                 @using (Html.BeginForm("UploadResume", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary("", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.LabelFor(m => m.ResumeFilename, new { @class = "col-md-2 control-label" })
+                        <label class="col-md-2 control-label">Upload Resume</label>
                         <div class="col-md-10">
                             <input type="file" name="resumeFile" />
                         </div>

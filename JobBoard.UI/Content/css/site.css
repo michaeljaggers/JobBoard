@@ -63,6 +63,40 @@
     height: 45px;
 }
 
+.resume-page .form-horizontal .control-label {
+    padding-top: 0;
+}
+
+.download {
+    color: #FF4F57;
+    font-weight: 600;
+}
+
+.download:hover {
+    text-decoration: underline;
+}
+
+.current-resume {
+    padding-top: 8px;
+    color: #FF4F57;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.current-resume:hover {
+    text-decoration: underline;
+}
+
+.applications-content {
+    border-bottom: none;
+}
+
+.applications-content .row {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
     .navbar-default .navbar-nav.float-right {
         display: block;

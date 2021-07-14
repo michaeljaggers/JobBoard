@@ -19,7 +19,7 @@ namespace JobBoard.UI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position);
+            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position).Take(3);
             ViewBag.Openings = db.OpenPositions1.Include(o => o.OpenPositionId).Count();
             ViewBag.Accounts = db.AspNetUsers.Include(a => a.UserName).Count();
             ViewBag.Resumes = db.UserDetails1.Where(r => r.ResumeFilename != null).Count();
@@ -29,7 +29,7 @@ namespace JobBoard.UI.Controllers
         // GET: Featured Open Position Partial
         public ActionResult FeaturedOpenPositions()
         {
-            List<OpenPositions> featuredOpenPositions = db.OpenPositions1.Where(o => o.IsFeatured == true).ToList();
+            List<OpenPositions> featuredOpenPositions = db.OpenPositions1.Where(o => o.IsFeatured == true).Take(6).ToList();
             return PartialView("FeaturedOpenPositions", featuredOpenPositions);
         }
 
@@ -37,8 +37,6 @@ namespace JobBoard.UI.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -84,8 +82,7 @@ namespace JobBoard.UI.Controllers
             {
                 ViewBag.Message = ex.StackTrace;
             }
-            //ModelState.Clear();
-            //ViewBag.Success = $"<div class=\"alert alert-success\" role=\"alert\">Message sent.</div>";
+
             return Json(cvm);
         }
     }

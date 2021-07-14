@@ -1,4 +1,5 @@
-﻿using JobBoard.UI.Models;
+﻿using JobBoard.DATA;
+using JobBoard.UI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -12,6 +13,8 @@ namespace JobBoard.UI.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        private JobBoardEntities db = new JobBoardEntities();
+
         public ManageController()
         {
         }
@@ -355,7 +358,13 @@ namespace JobBoard.UI.Controllers
         // GET: /Manage/UploadResume
         public ActionResult UploadResume()
         {
-            return View();
+            if (Request.IsAuthenticated && User.IsInRole("Employee"))
+            {
+                var userId = User.Identity.GetUserId();
+                var userResume = db.UserDetails1.Single(u => u.UserId == userId).ResumeFilename;
+                ViewBag.UserResume = userResume;
+            }
+                return View();
         }
 
         //
