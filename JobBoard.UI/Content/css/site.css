@@ -1,6 +1,18 @@
 ﻿body {
 }
 
+.navbar .navbar-brand{
+    padding-top: 7px;
+}
+
+.navbar-default.affix .navbar-brand {
+    padding-top: 2px;
+}
+
+.navbar-brand > img {
+    max-width: 150px;
+}
+
 .slicknav_nav {
     max-height: 630px;
 }
@@ -15,6 +27,10 @@
     overflow: visible;
     left: unset;
     pointer-events: initial;
+}
+
+.detail-company .img-thum {
+    width: 68px;
 }
 
 .form-group input[type=file] {

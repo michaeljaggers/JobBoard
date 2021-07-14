@@ -68,7 +68,7 @@
                     </div>
                     <!-- LAYERS 3-->
                     <div class="caption sfb tp-caption start" data-x="center" data-y="center" data-voffset="90" data-speed="400" data-start="1600" data-easing="easeOutExpo">
-                        <a href="#" class="btn btn-border btn-lg">Get Started</a>
+                        <a href=@Url.Action("Login", "Account") class="btn btn-border btn-lg">Get Started</a>
                     </div>
                 </li>
                 <li data-transition="zoomin" data-slotamount="7" data-masterspeed="1500" data-thumb="../../Content/img/slider/slide3.jpg">
@@ -112,7 +112,7 @@
                          data-elementdelay="0.1"
                          data-endelementdelay="0.1"
                          data-endspeed="300" style="z-index: 11;">
-                        <a href="#" class="btn btn-common btn-lg">Find Your Handout</a>
+                        <a href="https://www.google.com/search?q=software+engineer+internship" class="btn btn-common btn-lg">Find Your Handout</a>
                     </div>
                     <!-- LAYER NR. 2 -->
                     <div class="tp-caption lfb start" data-y="50" data-x="750" style="z-index: 9; left: 839.5px; top: 125px; visibility: visible; opacity: 0; transform: translate3d(0px, 763px, 0px);" data-captionhidden="on" data-endeasing="Power4.easeIn" data-endspeed="1000" data-start="1200" data-speed="800" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;">
@@ -134,7 +134,7 @@
                 {
                     <div class="job-list">
                         <div class="thumb">
-                            <a href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })><img src="~/Content/img/jobs/img-1.jpg" alt=""></a>
+                            <a href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })><img src="~/Content/img/techsavvy-square.png" alt=""></a>
                         </div>
                         <div class="job-list-content">
                             <h4><a href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })>@Html.DisplayFor(modelItem => item.Position.Title)</a></h4>
