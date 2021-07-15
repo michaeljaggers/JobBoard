@@ -3,6 +3,7 @@ using JobBoard.UI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -396,16 +397,25 @@ namespace JobBoard.UI.Controllers
                 if (goodExts.Contains(ext.ToLower()))
                 {
                     file = resumeFile.FileName;
-
+                    
                     string savePath = Server.MapPath("~/Content/resumes/");
 
+                    // Save Resume to files
                     resumeFile.SaveAs(savePath + file);
+
+                    // Update USerDetails in DB
+                    var currentUser = db.UserDetails1.Find(userId);
+                    currentUser.ResumeFilename = file;
+                    db.Entry(currentUser).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
 
             }
 
             #endregion
 
+            Session["message"] = null;
+            ViewBag.UserResume = file;
             return View();
         }
 

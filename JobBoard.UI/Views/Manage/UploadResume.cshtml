@@ -1,4 +1,5 @@
 ﻿@model JobBoard.UI.Models.RegisterViewModel
+
 @{
     ViewBag.Title = "Manage Resume";
 }
@@ -24,6 +25,10 @@
 <section class="manage resume-page section">
     <div class="container">
         <h2 class="medium-title">@ViewBag.Title</h2>
+        @if (Session["message"] != null)
+        {
+            <p class="alert alert-warning text-center">@Session["message"]</p>
+        }
         <div class="card table-card">
             <div class="card-body">
                 @if (ViewBag.UserResume != null)
@@ -39,7 +44,7 @@
                 }
                 
 
-                @using (Html.BeginForm("UploadResume", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("UploadResume", "Manage", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary("", new { @class = "text-danger" })

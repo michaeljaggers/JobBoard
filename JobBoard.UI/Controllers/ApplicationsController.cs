@@ -97,8 +97,8 @@ namespace JobBoard.UI.Controllers
             }
             else
             {
-                throw new Exception();
-                // TODO: Return message to View about needing resume before applying.
+                Session["message"] = "A resume is necessary to apply for positions.";
+                return RedirectToAction("UploadResume", "Manage");
             }
             
             
