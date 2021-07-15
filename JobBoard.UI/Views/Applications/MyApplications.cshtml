@@ -23,34 +23,34 @@
 <!-- Page Header End -->
 <div id="content">
     <div class="container">
-        <div class="row">
+        <h2 class="medium-title">@ViewBag.Title</h2>
+        <div class="row my-apps">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="job-alerts-item">
-                        <h3 class="alerts-title">@ViewBag.Title</h3>
-                        <div class="applications-content">
-                            @foreach (var item in Model)
-                            {
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="thums">
-                                            <img src="../../Content/img/jobs/img-1.jpg" alt="">
-                                        </div>
-                                        <h3>@item.OpenPosition.Position.Title</h3>
-                                        <span>@item.OpenPosition.Location.City, @item.OpenPosition.Location.State, USA</span>
+                <div class="job-alerts-item">
+                    <div class="applications-content">
+                        @foreach (var item in Model)
+                        {
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="thums">
+                                        <img src="~/Content/img/techsavvy-square.png" alt="">
                                     </div>
-                                    <div class="col-md-3">
-                                        <p><span class="full-time">Full-Time</span></p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <p>@item.ApplicationDate.ToShortDateString()</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <p>@item.ApplicationStatu.StatusName</p>
-                                    </div>
+                                    <h3>@item.OpenPosition.Position.Title</h3>
+                                    <span>@item.OpenPosition.Location.City, @item.OpenPosition.Location.State, USA</span>
                                 </div>
-                            }
-                        </div>
+                                <div class="col-md-3">
+                                    <p><span class="full-time">Full-Time</span></p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p>@item.ApplicationDate.ToShortDateString()</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p>@item.ApplicationStatu.StatusName</p>
+                                </div>
+                            </div>
+                        }
                     </div>
+                </div>
             </div>
         </div>
     </div>

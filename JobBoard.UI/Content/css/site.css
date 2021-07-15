@@ -88,6 +88,14 @@
     padding: 10px;
 }
 
+.my-apps {
+    margin-top: 40px;
+}
+
+.job-alerts-item {
+    padding: 10px 40px;
+}
+
 .job-list {
     width: 100%;
 }
