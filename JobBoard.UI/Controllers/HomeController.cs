@@ -19,8 +19,9 @@ namespace JobBoard.UI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position).Take(3)
-                                                   .OrderBy(o => o.Position.Title);
+            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position)
+                                                   .OrderBy(o => o.Position.Title)
+                                                   .Take(3);
             ViewBag.Openings = db.OpenPositions1.Include(o => o.OpenPositionId).Count();
             ViewBag.Accounts = db.AspNetUsers.Include(a => a.UserName).Count();
             ViewBag.Resumes = db.UserDetails1.Where(r => r.ResumeFilename != null).Count();
@@ -30,7 +31,10 @@ namespace JobBoard.UI.Controllers
         // GET: Featured Open Position Partial
         public ActionResult FeaturedOpenPositions()
         {
-            List<OpenPositions> featuredOpenPositions = db.OpenPositions1.Where(o => o.IsFeatured == true).Take(6).ToList();
+            List<OpenPositions> featuredOpenPositions = db.OpenPositions1.Where(o => o.IsFeatured == true)
+                                                                         .OrderBy(o => o.PositionId)
+                                                                         .Take(3)
+                                                                         .ToList();
             return PartialView("FeaturedOpenPositions", featuredOpenPositions);
         }
 
