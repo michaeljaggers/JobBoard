@@ -459,6 +459,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Configs\AppSecretKeys.config" />
     <Content Include="Content\resumes\Michael Jaggers Resume IT.docx" />
+    <Content Include="Content\resumes\Test Resume.docx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

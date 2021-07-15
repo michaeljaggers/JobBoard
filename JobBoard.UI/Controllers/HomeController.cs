@@ -19,7 +19,8 @@ namespace JobBoard.UI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position).Take(3);
+            var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position).Take(3)
+                                                   .OrderBy(o => o.Position.Title);
             ViewBag.Openings = db.OpenPositions1.Include(o => o.OpenPositionId).Count();
             ViewBag.Accounts = db.AspNetUsers.Include(a => a.UserName).Count();
             ViewBag.Resumes = db.UserDetails1.Where(r => r.ResumeFilename != null).Count();

@@ -88,6 +88,10 @@
     max-width: 850px;
 }
 
+.pager {
+    margin: 0;
+}
+
 .paging {
     display: flex;
     align-items: center;
@@ -116,10 +120,10 @@
     height: 45px;
 }
 
-/*.job-detail.section {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}*/
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
 
 .job-detail .header-detail .header-content,
 .job-detail .header-detail .detail-company {
@@ -158,6 +162,24 @@
     padding-top: 8px;
     padding-bottom: 8px;
     border-bottom: 1px solid #eee;
+}
+
+.manage .dl-horizontal {
+    max-width: 900px;
+    margin: 10px 20px 20px 20px;
+}
+
+.manage .dl-horizontal dt {
+    font-size: 18px;
+}
+
+.manage .dl-horizontal dt:after {
+    content: ":";
+}
+
+.manage .dl-horizontal dd {
+    font-size: 17px;
+    margin-bottom: 10px;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
