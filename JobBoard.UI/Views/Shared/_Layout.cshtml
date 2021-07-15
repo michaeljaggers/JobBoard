@@ -297,6 +297,23 @@
     <script type="text/javascript" src="~/Scripts/custom.js"></script>
     @RenderSection("scripts", required: false)
 
+    // Active Nav Link
+    <script>
+        $(function () {
+            $('.navbar-nav > li a').each(function () {
+                if ($(this).attr('href') == window.location.pathname) {
+                    $(this).addClass('active');
+                }
+            });
+
+            $('.slicknav_nav > li a').each(function () {
+                if ($(this).attr('href') == window.location.pathname) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+
 
 </body>
 </html>

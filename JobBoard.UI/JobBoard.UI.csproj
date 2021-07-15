@@ -460,6 +460,7 @@
     <Content Include="Configs\AppSecretKeys.config" />
     <Content Include="Content\resumes\Michael Jaggers Resume IT.docx" />
     <Content Include="Content\resumes\Test Resume.docx" />
+    <Content Include="Content\resumes\Test Resume 2.docx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
