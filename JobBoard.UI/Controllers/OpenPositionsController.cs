@@ -35,7 +35,7 @@ namespace JobBoard.UI.Controllers
         // GET: OpenPositions/FindJob
         public ActionResult FindJob(string currentFilter, string searchString, int? page)
         {
-            int pageSize = 5;
+            int pageSize = 6;
             int pageNumber = (page ?? 1);
 
             if (searchString != null)
