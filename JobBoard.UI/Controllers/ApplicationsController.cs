@@ -32,6 +32,7 @@ namespace JobBoard.UI.Controllers
         }
 
         // GET: Applications/MyApplications
+        [Authorize(Roles = "Employee")]
         public ActionResult MyApplications()
         {
             var userId = User.Identity.GetUserId();

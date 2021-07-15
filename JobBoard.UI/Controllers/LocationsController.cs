@@ -10,6 +10,7 @@ using JobBoard.DATA;
 
 namespace JobBoard.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class LocationsController : Controller
     {
 

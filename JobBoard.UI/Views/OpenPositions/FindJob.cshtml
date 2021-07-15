@@ -1,11 +1,12 @@
-﻿@model IEnumerable<JobBoard.DATA.OpenPositions>
-@using Microsoft.AspNet.Identity
-
-
+﻿@model PagedList.IPagedList<JobBoard.DATA.OpenPositions>
+@using Microsoft.AspNet.Identity;
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Find Your Next Job";
 }
+
 <!-- Page Header Start -->
 <div class="page-header" style="background: url(../../Content/img/banner1.jpg);">
     <div class="container">
@@ -27,16 +28,12 @@
 <section class="find-job manage section">
     <div class="container">
         <h2 class="medium-title">@ViewBag.Title</h2>
-        <div class="row">
-            <div class="col-md-12">
-                <p>Search by title or location:</p>
-            </div>
-        </div>
+
         <div class="row job-search-box">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("FindJob", "OpenPositions", FormMethod.Get))
             {
                 <div class="col-sm-10">
-                    @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { placeholder = "Search title or location", @class = "form-control" })
                 </div>
                 <div class="col-sm-2">
                     <input type="submit" value="Search" class="btn btn-common pull-right submit" />
@@ -45,39 +42,56 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                @foreach (var item in Model)
+                @if (Model.Count == 0)
                 {
-                    <div class="job-list">
-                        <div class="thumb">
-                            <a href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })><img src="~/Content/img/techsavvy-square.png" alt=""></a>
-                        </div>
-                        <div class="job-list-content">
-                            <h4><a href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })>@Html.DisplayFor(modelItem => item.Position.Title)</a></h4>
-                            <p>@item.Position.JobDescription</p>
-                            <div class="job-tag">
-                                <div class="pull-left">
-                                    <div class="meta-tag">
-                                        <span><i class="ti-location-pin"></i>@item.Location.City, @item.Location.State, USA</span>
-                                        <span><i class="ti-time"></i>Full-Time</span>
+                    <p class="alert alert-warning">No results meet your criteria.</p>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="job-list">
+                            <div class="thumb">
+                                <a href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })><img src="~/Content/img/techsavvy-square.png" alt=""></a>
+                            </div>
+                            <div class="job-list-content">
+                                <h4><a href=@Url.Action("JobDetails", "OpenPositions", new { id = item.OpenPositionId })>@Html.DisplayFor(modelItem => item.Position.Title)</a></h4>
+                                <p>@item.Position.JobDescription.Substring(0, Math.Min(item.Position.JobDescription.Length, 350))...</p>
+                                <div class="job-tag">
+                                    <div class="pull-left">
+                                        <div class="meta-tag">
+                                            <span><i class="ti-location-pin"></i>@item.Location.City, @item.Location.State, USA</span>
+                                            <span><i class="ti-time"></i>Full-Time</span>
+                                        </div>
                                     </div>
+                                    @if (Request.IsAuthenticated && User.IsInRole("Employee"))
+                                    {
+                                        <div class="pull-right">
+                                            @using (Html.BeginForm("Create", "Applications", FormMethod.Post))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="openPositionId" value="@item.OpenPositionId" />
+                                                <div class="form-group">
+                                                    <input type="submit" value="Apply" class="btn btn-common" />
+                                                </div>
+                                            }
+                                        </div>
+                                    }
                                 </div>
-                                @if (Request.IsAuthenticated && User.IsInRole("Employee"))
-                                {
-                                    <div class="pull-right">
-                                        @using (Html.BeginForm("Create", "Applications", FormMethod.Post))
-                                        {
-                                            @Html.AntiForgeryToken()
-                                            <input type="hidden" name="openPositionId" value="@item.OpenPositionId" />
-                                            <div class="form-group">
-                                                <input type="submit" value="Apply" class="btn btn-common" />
-                                            </div>
-                                        }
-                                    </div>
-                                }
                             </div>
                         </div>
-                    </div>
+                    }
                 }
+
+                <div class="paging pull-right">
+                    @if (Model.Count != 0)
+                    {
+                        <div class="paging-count">
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        </div>
+                    }
+                    @Html.PagedListPager(Model, page => Url.Action("FindJob", new { page, currentFilter = ViewBag.CurrentFilter }))
+                </div>
             </div>
         </div>
     </div>

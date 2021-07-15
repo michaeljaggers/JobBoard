@@ -34,12 +34,14 @@ namespace JobBoard.UI.Controllers
         }
 
         [HttpGet]
+        // GET: Home/About
         public ActionResult About()
         {
             return View();
         }
 
         [HttpGet]
+        // GET: Home/Contact
         public ActionResult Contact()
         {
             return View();

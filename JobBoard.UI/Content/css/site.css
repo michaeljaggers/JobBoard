@@ -80,7 +80,30 @@
     padding: 10px;
 }
 
-.pager {
+.job-list {
+    width: 100%;
+}
+
+.job-list-content p {
+    max-width: 850px;
+}
+
+.paging {
+    display: flex;
+    align-items: center;
+}
+
+.paging-count,
+.pagination-container {
+    display: inline-block;
+}
+
+.paging-count {
+    height: 28px;
+    margin-right: 20px;
+}
+
+.pagination-container ul {
     margin: 0;
 }
 
@@ -91,6 +114,16 @@
 
 .job-search-box .form-control {
     height: 45px;
+}
+
+/*.job-detail.section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}*/
+
+.job-detail .header-detail .header-content,
+.job-detail .header-detail .detail-company {
+    padding: 30px 30px 0 30px;
 }
 
 .resume-page .form-horizontal .control-label {

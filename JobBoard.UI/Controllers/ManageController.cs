@@ -356,6 +356,7 @@ namespace JobBoard.UI.Controllers
         }
 
         // GET: /Manage/UploadResume
+        [Authorize(Roles = "Employee")]
         public ActionResult UploadResume()
         {
             if (Request.IsAuthenticated && User.IsInRole("Employee"))

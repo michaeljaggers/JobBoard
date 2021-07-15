@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using JobBoard.DATA;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace JobBoard.UI.Controllers
 {
@@ -32,18 +33,35 @@ namespace JobBoard.UI.Controllers
         }
 
         // GET: OpenPositions/FindJob
-        public ActionResult FindJob(string searchString)
+        public ActionResult FindJob(string currentFilter, string searchString, int? page)
         {
-            var openPositions = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var openPositions = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position)
+                                                 .OrderBy(o => o.Position.Title);
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 openPositions = openPositions.Where(o => o.Position.Title.Contains(searchString)
-                                       || o.Location.City.Contains(searchString)
-                                       || o.Location.State.Contains(searchString));
+                                                      || o.Location.City.Contains(searchString)
+                                                      || o.Location.State.Contains(searchString))
+                                             .OrderBy(o => o.Position.Title);
             }
 
-            return View(openPositions.ToList());
+            
+            return View(openPositions.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: OpenPositions/JobDetails/5
