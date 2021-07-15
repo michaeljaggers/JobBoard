@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationsController.cs" />
     <Compile Include="Controllers\ApplicationStatusController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -228,6 +229,7 @@
     <Content Include="Content\img\bg\counter-bg.jpg" />
     <Content Include="Content\img\computer-collaboration.jpg" />
     <Content Include="Content\img\dummy.png" />
+    <Content Include="Content\img\error.jpg" />
     <Content Include="Content\img\favicon-16x16.png" />
     <Content Include="Content\img\favicon-32x32.png" />
     <Content Include="Content\img\internship.jpg" />
@@ -573,6 +575,7 @@
     <Content Include="Views\Applications\MyApplications.cshtml" />
     <Content Include="Views\Shared\_MobileLoginPartial.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Errors\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
