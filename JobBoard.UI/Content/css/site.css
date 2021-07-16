@@ -18,11 +18,15 @@
 }
 
 .navbar-default .navbar-nav > li:hover > a,
+.navbar-default .navbar-nav > li > a.active
+
+.navbar-default .navbar-nav > li:hover > a,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:active,
+.navbar-default .navbar-nav > li > a.active,
 .navbar-default .navbar-nav > li > a:focus {
     background: #FF4F57;
-    color: #FFF;
+    color: #FFF !important;
 }
 
 #RememberMe {
