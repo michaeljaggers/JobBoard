@@ -7,7 +7,7 @@ namespace JobBoard.UI
         public static void RegisterBundles(BundleCollection bundles)
         {
             // JS Bundles
-            bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
+            bundles.Add(new ScriptBundle("~/bundles/main_scripts").Include(
                         "~/Scripts/jquery-min.js",
                         "~/Scripts/bootstrap.min.js",
                         "~/Scripts/material.min.js",
@@ -40,7 +40,7 @@ namespace JobBoard.UI
                       "~/fonts/font-awesome.min.css",
                       "~/fonts/themify-icons.css"));
 
-            bundles.Add(new StyleBundle("~/Content/extras").Include(
+            bundles.Add(new StyleBundle("~/Content/extra_styles").Include(
                       "~/Content/extras/animate.css",
                       "~/Content/extras/owl.carousel.css",
                       "~/Content/extras/owl.theme.css",
@@ -52,7 +52,7 @@ namespace JobBoard.UI
                       "~/Content/css/responsive.css",
                       "~/Content/css/colors/red.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/custom").Include(
                       "~/Content/css/site.css"));
         }
     }
