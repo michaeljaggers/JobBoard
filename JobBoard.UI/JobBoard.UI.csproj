@@ -228,11 +228,16 @@
     <Content Include="Content\img\apple-touch-icon.png" />
     <Content Include="Content\img\award.png" />
     <Content Include="Content\img\banner1.jpg" />
+    <Content Include="Content\img\bg-02.jpg" />
+    <Content Include="Content\img\bg-intro-1.jpg" />
+    <Content Include="Content\img\bg-intro.jpg" />
+    <Content Include="Content\img\bg-overlay.png" />
     <Content Include="Content\img\bg\bg-intro-1.jpg" />
     <Content Include="Content\img\bg\bg-intro.jpg" />
     <Content Include="Content\img\bg\bg-overlay.png" />
     <Content Include="Content\img\bg\counter-bg.jpg" />
     <Content Include="Content\img\computer-collaboration.jpg" />
+    <Content Include="Content\img\counter-bg.jpg" />
     <Content Include="Content\img\dummy.png" />
     <Content Include="Content\img\error.jpg" />
     <Content Include="Content\img\favicon-16x16.png" />
@@ -249,7 +254,9 @@
     <Content Include="Content\img\testimonial-1.jpg" />
     <Content Include="Content\img\testimonial-2.jpg" />
     <Content Include="Content\img\testimonial-3.jpg" />
+    <Content Include="Content\img\testimonial-bg.jpg" />
     <Content Include="Content\img\testimonial\testimonial-bg.jpg" />
+    <Content Include="Content\img\transparent.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome.min.css" />
