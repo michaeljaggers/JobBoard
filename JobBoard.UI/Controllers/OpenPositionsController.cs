@@ -109,7 +109,6 @@ namespace JobBoard.UI.Controllers
                 var managerLocation = db.Locations1.Single(o => o.LocationId == manager.LocationId).LocationId;
 
                 ViewBag.ManagerLocation = managerLocation;
-                //ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
             }
 
             return View();
@@ -141,7 +140,6 @@ namespace JobBoard.UI.Controllers
                 var managerLocation = db.Locations1.Single(o => o.LocationId == manager.LocationId).LocationId;
 
                 ViewBag.ManagerLocation = managerLocation;
-                //ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
             }
             
             return View(openPositions);
@@ -172,7 +170,6 @@ namespace JobBoard.UI.Controllers
                 var managerLocation = db.Locations1.Single(o => o.LocationId == manager.LocationId).LocationId;
 
                 ViewBag.ManagerLocation = managerLocation;
-                //ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
             }
 
             return View(openPositions);
@@ -204,7 +201,6 @@ namespace JobBoard.UI.Controllers
                 var managerLocation = db.Locations1.Single(o => o.LocationId == manager.LocationId).LocationId;
 
                 ViewBag.ManagerLocation = managerLocation;
-                //ViewBag.LocationID = new SelectList(managerLocations, "LocationId", "LocationInfo");
             }
 
             return View(openPositions);

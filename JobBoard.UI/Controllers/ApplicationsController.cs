@@ -101,8 +101,6 @@ namespace JobBoard.UI.Controllers
                 return RedirectToAction("UploadResume", "Manage");
             }
             
-            
-
             ViewBag.ApplicationStatus = new SelectList(db.ApplicationStatus1, "ApplicationStatusId", "StatusName", applications.ApplicationStatus);
             ViewBag.OpenPositionId = new SelectList(db.OpenPositions1, "OpenPositionId", "PositionId", applications.OpenPositionId);
             ViewBag.UserId = new SelectList(db.UserDetails1, "UserId", "FullName", applications.UserId);
