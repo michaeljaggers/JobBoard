@@ -70,41 +70,47 @@ namespace JobBoard.UI.Controllers
         {
             Applications applications = new Applications();
 
+            // Get current logged-in user
             var userId = User.Identity.GetUserId();
+            // Get corresponding user details for user
             var userDeets = db.UserDetails1.FirstOrDefault(u => u.UserId == userId);
             string userResume = null;
 
+            // Only employees will see the apply button, but we want to make sure we get data back
             if (userDeets != null)
             {
-                userResume = userDeets.ResumeFilename;
+                userResume = userDeets.ResumeFilename; // Set their resume to the filename from the DB
             }
 
+            // If above fails, this will remain null, otherwise set new application info
+            // and save it to the database
             if (userResume != null)
             {
                 applications.OpenPositionId = openPositionId;
                 applications.UserId = User.Identity.GetUserId();
                 applications.ApplicationDate = DateTime.Now;
-                applications.ApplicationStatus = 3;
+                applications.ApplicationStatus = 3; // Pending 
                 applications.ResumeFilename = userResume;
 
                 if (ModelState.IsValid)
                 {
                     db.Applications1.Add(applications);
                     db.SaveChanges();
+
+                    // After a successful submission send use to application overview page
                     return RedirectToAction("MyApplications");
                 }
                 
             }
             else
             {
+                // Otherwise, send the user to the resume upload page to add their resume along
+                // with a message
                 Session["message"] = "A resume is necessary to apply for positions.";
                 return RedirectToAction("UploadResume", "Manage");
             }
             
-            ViewBag.ApplicationStatus = new SelectList(db.ApplicationStatus1, "ApplicationStatusId", "StatusName", applications.ApplicationStatus);
-            ViewBag.OpenPositionId = new SelectList(db.OpenPositions1, "OpenPositionId", "PositionId", applications.OpenPositionId);
-            ViewBag.UserId = new SelectList(db.UserDetails1, "UserId", "FullName", applications.UserId);
-            return View(applications);
+            return RedirectToAction("MyApplications");
         }
 
         // GET: Applications/Edit/5

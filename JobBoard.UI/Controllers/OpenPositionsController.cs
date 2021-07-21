@@ -35,32 +35,33 @@ namespace JobBoard.UI.Controllers
         // GET: OpenPositions/FindJob
         public ActionResult FindJob(string currentFilter, string searchString, int? page)
         {
-            int pageSize = 6;
+            int pageSize = 6; // Set 6 entries per page
             int pageNumber = (page ?? 1);
 
             if (searchString != null)
             {
-                page = 1;
+                page = 1; // If a query is entered, start at page 1 of the new results
             }
             else
             {
-                searchString = currentFilter;
+                searchString = currentFilter;  // Save the query into a filter to carry forward
             }
 
             ViewBag.CurrentFilter = searchString;
 
+            // By default, return all open positions
             var openPositions = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position)
                                                  .OrderBy(o => o.Position.Title);
 
             if (!String.IsNullOrEmpty(searchString))
             {
+                // Filter and return open positions containing keyword
                 openPositions = openPositions.Where(o => o.Position.Title.Contains(searchString)
                                                       || o.Location.City.Contains(searchString)
                                                       || o.Location.State.Contains(searchString))
                                              .OrderBy(o => o.Position.Title);
             }
 
-            
             return View(openPositions.ToPagedList(pageNumber, pageSize));
         }
 
