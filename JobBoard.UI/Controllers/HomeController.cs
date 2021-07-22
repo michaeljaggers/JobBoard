@@ -19,12 +19,16 @@ namespace JobBoard.UI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            // Initial Listings Preview
             var openPositions1 = db.OpenPositions1.Include(o => o.Location).Include(o => o.Position)
                                                    .OrderBy(o => o.Position.Title)
                                                    .Take(3);
+
+            // Live-Counter Section Data
             ViewBag.Openings = db.OpenPositions1.Include(o => o.OpenPositionId).Count();
             ViewBag.Accounts = db.AspNetUsers.Include(a => a.UserName).Count();
             ViewBag.Resumes = db.UserDetails1.Where(r => r.ResumeFilename != null).Count();
+
             return View(openPositions1.ToList());
         }
 

@@ -62,6 +62,8 @@ namespace JobBoard.UI.Controllers
         //    return View();
         //}
 
+
+
         // POST: Applications/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
