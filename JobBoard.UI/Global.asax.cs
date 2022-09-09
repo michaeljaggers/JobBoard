@@ -18,9 +18,9 @@ namespace JobBoard.UI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Application_Error()
-        {
-            Response.Redirect("~/Errors/NotFound");
-        }
+        //protected void Application_Error()
+        //{
+        //    Response.Redirect("~/Errors/NotFound");
+        //}
     }
 }

@@ -335,7 +335,8 @@
     <Content Include="Content\fonts\themify-icons\themify.ttf" />
     <Content Include="Content\fonts\themify-icons\themify.woff" />
     <Content Include="Content\MichaelJaggersDocumentation.pdf" />
-    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\SmarterASP FSDP - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\wmjaggers-001-subsite6 - FTP.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
